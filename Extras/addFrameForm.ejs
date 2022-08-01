@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+
+    <!--<title> Responsiive Admin | CodingLab </title>-->
+    <link rel="stylesheet" href="style.css">
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <style>
+
+/* Googlefont Poppins CDN Link */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+.sidebar{
+  position: fixed;
+  height: 100%;
+  width: 240px;
+  background: #0A2558;
+  transition: all 0.5s ease;
+}
+.sidebar.active{
+  width: 60px;
+}
+.sidebar .logo-details{
+  height: 80px;
+  display: flex;
+  align-items: center;
+}
+.sidebar .logo-details i{
+  font-size: 28px;
+  font-weight: 500;
+  color: #fff;
+  min-width: 60px;
+  text-align: center
+}
+.sidebar .logo-details .logo_name{
+  color: #fff;
+  font-size: 24px;
+  font-weight: 500;
+}
+.sidebar .nav-links{
+  margin-top: 10px;
+}
+.sidebar .nav-links li{
+  position: relative;
+  list-style: none;
+  height: 50px;
+}
+.sidebar .nav-links li a{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.4s ease;
+}
+.sidebar .nav-links li a.active{
+  background: #081D45;
+}
+.sidebar .nav-links li a:hover{
+  background: #081D45;
+}
+.sidebar .nav-links li i{
+  min-width: 60px;
+  text-align: center;
+  font-size: 18px;
+  color: #fff;
+}
+.sidebar .nav-links li a .links_name{
+  color: #fff;
+  font-size: 15px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+.sidebar .nav-links .log_out{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+.home-section{
+  position: relative;
+  background-image: url(../Images/spectacle.jpg);
+  /* background: #92e0ff; */
+  min-height: 100vh;
+  width: calc(100% - 240px);
+  left: 240px;
+  transition: all 0.5s ease;
+}
+.sidebar.active ~ .home-section{
+  width: calc(100% - 60px);
+  left: 60px;
+}
+.home-section nav{
+  display: flex;
+  justify-content: space-between;
+  height: 80px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  width: calc(100% - 240px);
+  left: 240px;
+  z-index: 100;
+  padding: 0 20px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  transition: all 0.5s ease;
+}
+.sidebar.active ~ .home-section nav{
+  left: 60px;
+  width: calc(100% - 60px);
+}
+.home-section nav .sidebar-button{
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 500;
+}
+nav .sidebar-button i{
+  font-size: 35px;
+  margin-right: 10px;
+}
+.home-section nav .search-box{
+  position: relative;
+  height: 50px;
+  max-width: 550px;
+  width: 100%;
+  margin: 0 20px;
+}
+nav .search-box input{
+  height: 100%;
+  width: 100%;
+  outline: none;
+  background: #F5F6FA;
+  border: 2px solid #EFEEF1;
+  border-radius: 6px;
+  font-size: 18px;
+  padding: 0 15px;
+}
+nav .search-box .bx-search{
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  background: #2697FF;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 4px;
+  line-height: 40px;
+  text-align: center;
+  color: #fff;
+  font-size: 22px;
+  transition: all 0.4 ease;
+}
+.home-section nav .profile-details{
+  display: flex;
+  align-items: center;
+  background: #F5F6FA;
+  border: 2px solid #EFEEF1;
+  border-radius: 6px;
+  height: 50px;
+  width: 100px;
+  padding: 0 15px 0 2px;
+}
+.home-section nav .profile-details:hover{
+    background-color: #006eff; 
+}
+.home-section nav .profile-details:hover a{
+    color : white;
+}
+.home-section nav .profile-details a{
+    text-decoration: none;
+}
+nav .profile-details img{
+  height: 40px;
+  width: 40px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+nav .profile-details .admin_name{
+  font-size: 15px;
+  font-weight: 500;
+  color: #333;
+  margin: 0 10px;
+  white-space: nowrap;
+}
+nav .profile-details i{
+  font-size: 25px;
+  color: #333;
+}
+.home-section .home-content{
+  position: relative;
+  padding-top: 90px;
+}
+
+/* Responsive Media Query */
+@media (max-width: 1240px) {
+  .sidebar{
+    width: 60px;
+  }
+  .sidebar.active{
+    width: 220px;
+  }
+  .home-section{
+    width: calc(100% - 60px);
+    left: 60px;
+  }
+  .sidebar.active ~ .home-section{
+    /* width: calc(100% - 220px); */
+    overflow: hidden;
+    left: 220px;
+  }
+  .home-section nav{
+    width: calc(100% - 60px);
+    left: 60px;
+  }
+  .sidebar.active ~ .home-section nav{
+    width: calc(100% - 220px);
+    left: 220px;
+  }
+}
+@media (max-width: 1150px) {
+  .home-content .sales-boxes{
+    flex-direction: column;
+  }
+  .home-content .sales-boxes .box{
+    width: 100%;
+    overflow-x: scroll;
+    margin-bottom: 30px;
+  }
+  .home-content .sales-boxes .top-sales{
+    margin: 0;
+  }
+}
+@media (max-width: 1000px) {
+  .overview-boxes .box{
+    width: calc(100% / 2 - 15px);
+    margin-bottom: 15px;
+  }
+}
+@media (max-width: 700px) {
+  nav .sidebar-button .role,
+  nav .profile-details .admin_name,
+  nav .profile-details i{
+    display: none;
+  }
+  .home-section nav .profile-details{
+    height: 50px;
+    min-width: 40px;
+  }
+  .home-content .sales-boxes .sales-details{
+    width: 560px;
+  }
+}
+@media (max-width: 550px) {
+  .overview-boxes .box{
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  .sidebar.active ~ .home-section nav .profile-details{
+    display: none;
+  }
+}
+
+.home-content{
+    padding: 0 20px;
+    background-color: rgb(216, 233, 248);
+}
+.home-content .home-header{
+  white-space: nowrap;
+  position: -webkit-sticky;
+  position: sticky;
+  display: flex;
+}
+.home-content .home-header .backButton{
+  background-color: blue;
+  display: inline-block;
+}
+.home-content .home-heading{
+  text-align: center;
+  display: inline-block;
+  text-shadow: #0501ff;
+}
+.home-content .btn-info{
+    background-color: blue;
+    width: 100px;
+    left: calc(50% - 50);
+}
+
+.addFrameText{
+  text-align: center;
+}
+
+/* Add Frame Form*/
+
+.addFrameForm{
+    align-content: center;
+    overflow: auto;
+    width: 50%; 
+    position: relative;
+    left: 25%;
+    background-color: white;
+    border-radius: 4rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 2rem;
+
+}
+
+/* Back Button */
+.backButton{
+  align-items: center;
+  position: fixed;
+  background-color: #0A66C2;
+  border: 0;
+  border-radius: 100px;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: -apple-system, system-ui, system-ui, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 20px;
+  max-width: 480px;
+  min-height: 40px;
+  min-width: 0px;
+  overflow: hidden;
+  padding: 0px;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: center;
+  touch-action: manipulation;
+  transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+}
+
+.backButton:hover,
+.backButton:focus { 
+  background-color: #16437E;
+  color: #ffffff;
+}
+
+.backButton:active {
+  background: #09223b;
+  color: rgb(255, 255, 255, .7);
+}
+
+.backButton:disabled { 
+  cursor: not-allowed;
+  background: rgba(0, 0, 0, .08);
+  color: rgba(0, 0, 0, .3);
+}
+/* Form Input*/
+.inputstl { 
+    padding: 9px; 
+    border: solid 1px #4B718B; 
+    outline: 0; 
+    background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #CDDBE4), to(#FFFFFF)); 
+    background: -moz-linear-gradient(top, #FFFFFF, #CDDBE4 1px, #FFFFFF 25px); 
+    box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px; 
+    -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px; 
+    -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px; 
+    }
+    </style>
+</head>
+<body>
+
+  <div class="sidebar">
+    <div class="logo-details">
+      <i class='bx bxl-c-plus-plus'></i>
+      <span class="logo_name">LensePro</span>
+    </div>
+    <ul class="nav-links">
+      <li>
+        <a href="/adminHome" class="active">
+          <i class='bx bx-grid-alt' ></i>
+          <span class="links_name" >Frames</span>
+        </a>
+      </li>
+      <li>
+        <a href="/admin/shopList" >
+          <i class='bx bx-box' ></i>
+          <span class="links_name">Shops</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-list-ul' ></i>
+          <span class="links_name">Order list</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-pie-chart-alt-2' ></i>
+          <span class="links_name">Analytics</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="#">
+          <i class='bx bx-book-alt' ></i>
+          <span class="links_name">Frame Model</span>
+        </a>
+      </li>
+      <li class="log_out">
+        <a href="/adminlogout">
+          <i class='bx bx-log-out'></i>
+          <span class="links_name">Log out</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <section class="home-section">
+    <nav>
+      <div class="sidebar-button">
+        <i class='bx bx-menu sidebarBtn'></i>
+        <span class="role">Admin</span>
+      </div>
+
+      <div class="profile-details">
+        <!--<img src="images/profile.jpg" alt="">-->
+        <span class="admin_name"><a href="/adminProfile">Profile</a></span>
+        <i class='bx bx-user' ></i>
+      </div>
+    </nav>
+    <div class="home-content">
+      <div cla="home-content home-header">
+        <div class="back-button">
+        <form action="/admin/adminHome"><button type="submit" class="backButton">Back</button></form>
+        </div>
+        
+      </div>
+        <div class="addFrameForm">
+        <form action="/admin/addFrame" enctype="multipart/form-data" method="post">
+          <div class="addFrameText" style="border-bottom: 1px black solid"> 
+            <h1 class="home-heading" style="color: rgb(0, 0, 0); text-shadow: 2px 2px rgb(134, 125, 255); font-weight: 400; font-family: poppins;">New frame</h1>
+            </div>
+            <br>
+                <div class="form-group">
+                  <label for="modelNumber">Model Number</label>
+                  <input type="text" class="form-control inputstl" name="modelNumber" id="modelNumber" placeholder="Model Number" required>
+                </div>
+                <div class="form-group">
+                  <label for="name">Frame Name</label>
+                  <input type="text" class="form-control inputstl" name="name" id="name" placeholder="Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="brand">Brand</label>
+                    <select class="form-control inputstlDropDown" name="brand" id="brand" required>
+                      <option selected disabled="true" value="">Select Brand</option>
+                      <option></option>
+                      <option></option>
+                      <option></option>
+                    </select>                </div>  
+                <div class="form-group">
+                  <label for="Inputselect">Frame Type</label>
+                  <select class="form-control inputstlDropDown" name="frameType" id="frameType" required>
+                    <option selected disabled="true" value="">Select Frame Type</option>
+                    <option>Rimless</option>
+                    <option>Semi Rimless</option>
+                    <option>Full Rimmed</option>
+                  </select>
+                </div>  
+                <div class="form-group">
+                  <label for="glassType">Glass Type</label>
+                  <select class="form-control inputstlDropDown" name="glassType" id="glassType" required>
+                    <option selected disabled="true" value="">Select Glass Type</option>
+                    <option>Presciption Glasses</option>
+                    <option>Sunglasses</option>
+                    <option>Reading Glasses</option>
+                    <option>Digital Protection</option>
+                    <option>Fake Glasses</option>
+                  </select>
+                </div>  
+                <div class="form-group">
+                    <label for="color">Color</label>
+                    <select class="form-control inputstlDropDown" name="color" id="color" required>
+                      <option selected disabled="true" value="" >Select Color</option>
+                      <option>Black</option>
+                      <option>Brown</option>
+                      <option>Blue</option>
+                      <option>Grey</option>
+                      <option>Gold</option>
+                      <option>Red</option>
+                      <option>Silver</option>
+                      <option>Tortoise</option>
+                      <option>Gunmetal</option>
+                      <option>Green</option>
+                      <option>Purple</option>
+                      <option>Pink</option>
+                      <option>White</option>
+                      <option>Golden</option>
+                      <option>Maroon</option>
+                      <option>Rose Gold</option>
+                      <option>Transparent</option>
+                    </select>
+                  </div>                 
+                <div class="form-group">
+                    <label for="price">Price</label>
+                    <input type="number" class="form-control inputstl" name="price" id="price" placeholder="Price" required>
+                </div> 
+               
+                <div class="form-group">
+                    <label for="material">Material</label>
+                    <select class="form-control inputstlDropDown" name="material" id="material" required>
+                    <option selected disabled="true" value="">Select Material</option>
+                    <option>Plastic</option>
+                    <option>Metal</option>
+                    </select>    
+                </div>
+                <div class="form-group">
+                  <label for="gender">Suitable For</label><br>
+                  <input type="radio" name="gender" id="gender" value="Man" required>Man
+                  <input type="radio" name="gender" id="gender" value="Woman" style="margin-left:2rem;" required>Woman
+                  <input type="radio" name="gender" id="gender" value="Kid" style="margin-left:2rem;" required>Kid
+                </div>
+                <div class="form-group">
+                    <label for="shape">Shape</label>
+                    <select class="form-control inputstlDropDown" name="shape" id="shape" required>
+                      <option selected disabled="true" value="">Select Shape</option>
+                      <option>Rectangle</option>
+                      <option>Round</option>
+                      <option>Cat Eye</option>
+                      <option>Square</option>
+                      <option>Aviator</option>
+                      <option>Wayfarcer</option>
+                      <option>Geometric</option>
+                      <option>Hexagonal</option>
+                      <option>Oval</option>
+                      <option>Clubmaster</option>
+                      <option>Butterfly</option>
+                      <option>Biker</option>
+                      <option>Shield</option>
+                      <option>Mirrored</option>
+                      <option>Pilot</option>
+                      <option>Sport</option>
+                    </select>                
+                  </div>
+                <div class="form-group">
+                    <label for="size">Size</label>
+                    <select class="form-control inputstlDropDown" name="size" id="size" required>
+                      <option selected disabled="true" value="" >Select Size</option>
+                      <option>Extra Narrow</option>
+                      <option>Narrow</option>
+                      <option>Medium</option>
+                      <option>Wide</option>
+                      <option>Extra Wide</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                  <label for="size">Frame Width (in mm)</label>
+                  <input type="number" class="form-control inputstl" name="width" id="width" placeholder="ex. 150">
+              </div>
+                <div class="form-group">
+                    <label for="weight">Weight group</label>
+                    <select class="form-control inputstlDropDown" name="weightGroup" id="weightGroup" required>
+                      <option selected disabled="true" value="" >Select Weight Group</option>
+                      <option>Light</option>
+                      <option>Average</option>
+                    </select>
+                  </div> 
+                <div class="form-group framePhoto">
+                    <label for="spectaclePhoto">Frame Photo</label>
+                    <div class ="photoUpload">
+                        <input type="file" class="form-control-file" name="image" id="spectaclePhoto" accept="image/*" required>
+                    </div>
+                </div>               
+                <div class="add-frame-button">
+                <button type="submit" class="btn btn-info" >Add Frame</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+ 
+  </section>
+
+  <script>
+   let sidebar = document.querySelector(".sidebar");
+let sidebarBtn = document.querySelector(".sidebarBtn");
+sidebarBtn.onclick = function() {
+  sidebar.classList.toggle("active");
+  if(sidebar.classList.contains("active")){
+  sidebarBtn.classList.replace("bx-menu" ,"bx-menu-alt-right");
+}else
+  sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+}
+
+// function validateFrame(){
+//   if(document.getElementById('type').value == "null"){
+//     alert("Please Select Type");
+//     document.getElementById('type').focus();
+//   }
+// }
+if(req.query.msg){
+  alert(req.query.msg);
+}
+ </script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>

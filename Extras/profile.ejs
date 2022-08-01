@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile</title>
+
+
+<style>
+.body{
+    width:100%;
+    height:100%;
+    margin: 0;
+}
+.sidebar{
+    position: fixed;
+    width: 240px;
+    height: 100%;
+    background-color: rgb(102, 199, 99);
+}
+.sidebar .profilePic{
+    height: 50%;
+}
+.sidebar .role{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+}
+.main{
+    position: absolute;
+    left: 240px;
+    width: calc(100% - 240px);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.main .header{
+    text-align: center;
+}
+table{
+    position: relative;
+    margin: auto;
+    margin-top: 1rem;
+    padding: 1.5rem;
+    font-size: 20px;
+    /* border: 2px groove blue; */
+    border-radius: 1rem;
+    box-shadow: 0.2rem 0.2rem 0.1rem rgba(0, 0, 0, 0.5), -0.2rem -0.2rem 0.1rem rgba(0, 0, 0, 0.5);
+}
+table tr{
+    outline: thin solid;
+    border-radius: 2rem;
+    margin: 1rem 0;
+}
+table td{
+    padding: 1rem;
+}
+table tr .label{
+    text-align: right;
+}
+</style>
+
+
+
+</head>
+<body>
+    <div class="sidebar">
+        <div class="profilePic">
+            <img>
+        </div>
+        <div class="role">
+            <h1>Admin</h1>
+        </div>
+    </div>
+    <div class="main">
+        <div class="header">
+            <p style="font-size: 48px; background-image: linear-gradient(to bottom right, red, rgb(234, 0, 255),blue);">My Profile</p>
+            <h2 style="font-size: 42px;">Account Info</h2>
+        </div>
+        <table class="profileData">
+            <tr>
+                <td clas="label"><b>Username</b></td>
+                <td><%= admin.name %></td>
+            </tr>
+
+            <tr>
+                <td class="label"><b>Email</b></td>
+                <td><%= admin.email %></td>
+            </tr>
+           
+            <tr>
+                <td class="label"><b>Password</b></td>
+                <td><%= admin.password %></td>
+            </tr>
+        </table>
+       
+    </div>
+</body>
+</html>

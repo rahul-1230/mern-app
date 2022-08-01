@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    <%= title %>
+  </title>
+
+  
+  <!-- Boxicons CDN Link -->
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+  <style>
+    /* Googlefont Poppins CDN Link */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+    <%- include('./sidebarNheader.css') %>
+    <%- include('./button/button.css') %>
+    .custdata {
+      width: 60%;
+      height: 40vh;
+      border: 1px solid #DFDFDE;
+      margin: 1rem;
+    }
+
+    h2 {
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .custdata div span {
+      width: 100%;
+      height: 100%;
+      border: 1px solid #DFDFDE;
+    }
+
+    .myorder {
+      width: 100%;
+      height: 100%;
+      background-color: white;
+    }
+
+    .myorder th {
+      width: 20%;
+      height: 2rem;
+      padding: 1rem;
+    }
+
+    .myorder tr,
+    th {
+      border: 1px solid #DFDFDE;
+    }
+
+    .myorder tr:hover {
+      background-color: #424874;
+      color: white;
+    }
+
+    .myorder td {
+      padding: 1rem;
+    }
+
+    .frameParameters {
+      width: 60%;
+      height: 10vh;
+      border: 1px solid #DFDFDE;
+      margin: 1rem
+    }
+
+    .frameParameters div span {
+      width: 100%;
+      height: 100%;
+      border: 1px solid #DFDFDE;
+    }
+
+    .frameParams {
+      width: 100%;
+      height: 100%;
+      background-color: white;
+    }
+
+    .frameParams th {
+      width: 10%;
+      height: 2rem;
+      padding: 1rem;
+      background-color: #5f67a0;
+      color: white;
+    }
+
+    .frameParams td,
+    th {
+      border: 1px solid #DFDFDE;
+    }
+
+
+    .frameParams td {
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .prec {
+      margin-top: 6rem;
+    }
+
+    .precContainer {
+      width: 60%;
+      height: 20vh;
+      border: 1px solid #DFDFDE;
+      margin: 1rem
+    }
+
+    .precTable {
+      width: 100%;
+      background-color: white;
+    }
+
+    .precContainer .precTable th {
+      height: 5rem;
+    }
+
+    .precTable td,
+    th {
+      text-align: center;
+      border: 1px solid #DFDFDE;
+    }
+
+    .precTable td {
+      width: 20%;
+    }
+
+    .first {
+      width: 20%;
+    }
+
+    .hrHeader {
+      background-color: #424874;
+      color: white;
+    }
+
+    .vrHeader {
+      background-color: #8d95cf;
+      color: white;
+    }
+
+    .precTable td:hover {
+      background-color: #dcd6f7;
+      font-weight: bold;
+
+    }
+
+
+    .selectedFrame {
+      position: relative;
+      height: 35vh;
+      margin-bottom: 5%;
+      margin-top: 5%;
+      text-align: center;
+      width: 35%;
+      background-color: white;
+      border: 1px solid #DFDFDE;
+      margin-left: 10%;
+    }
+
+    .myFrame {
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+    }
+
+    .myFrame img {
+      width: 40%;
+      height: 70%;
+    }
+
+    .img1 {
+      width: 60%;
+      height: 100%;
+    }
+
+
+    .img2 div {
+      display: flex;
+      margin-top: 20%;
+      background-color: #424874;
+      color: white;
+      font-weight: bold;
+      height: 45%;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .img2 div p {
+      padding-top: 5%;
+    }
+  </style>
+  <!-- <style href="../ShopCSS/signup.css" type="stylesheet"></style> -->
+</head>
+
+<body>
+
+  <div class="sidebar">
+    <div class="logo-details">
+      <i class='bx bxl-c-plus-plus'></i>
+      <span class="logo_name">LensePro</span>
+    </div>
+    <ul class="nav-links">
+      <li>
+        <a href="/shop/<%= shopid %>/home">
+          <i class='bx bx-grid-alt'></i>
+          <span class="links_name">Frames</span>
+        </a>
+      </li>
+      <li>
+        <a href="/shop/<%= shopid %>/addCustPage" class="active">
+          <i class='bx bx-box'></i>
+          <span class="links_name">Add Customer</span>
+        </a>
+      </li>
+      <li>
+        <a href="/shop/<%= shopid %>/viewCusts">
+          <i class='bx bx-list-ul'></i>
+          <span class="links_name">View All Customers</span>
+        </a>
+      </li>
+      <li>
+        <a href="/shop/<%= shopid %>/analytics">
+          <i class='bx bx-pie-chart-alt-2'></i>
+          <span class="links_name">Reports</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="/shop/<%= shopid %>/contactAdmin">
+          <i class='bx bx-book-alt'></i>
+          <span class="links_name">Contact Admin</span>
+        </a>
+      </li>
+      <li class="log_out">
+        <a href="/shop/logout">
+          <i class='bx bx-log-out'></i>
+          <span class="links_name">Log out</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <section class="home-section">
+    <!-- <div class="navbar"> -->
+    <nav>
+      <div class="sidebar-button">
+        <i class='bx bx-menu sidebarBtn'></i>
+        <span class="role">My Shop</span>
+      </div>
+
+      <div class="profile-details">
+        <!--<img src="images/profile.jpg" alt="">-->
+        <span class="admin_name">
+            <a href="/shop/profile/<%= shopid %>"><i class='bx bx-user'></i></a></span>
+      </div>
+    </nav>
+
+    <div class="home-content">
+     
+      <div class="main-content" style="height: auto;">
+        <div class="form-area">
+          <h2>Customer Information</h2>
+          <div class="addShopForm">
+            <div class="custdata">
+              <table class="myorder">
+                <tr>
+                  <th>Name</th>
+                  <td>
+                    <%= cust.name %>
+                  </td>
+                </tr>
+                <tr>
+                  <th>Email</th>
+                  <td>
+                    <%= cust.email %>
+                  </td>
+                </tr>
+                <tr>
+                  <th>Gender</th>
+                  <td>
+                    <%= cust.gender %>
+                  </td>
+                </tr>
+                <tr>
+                  <th>Birthdate</th>
+                  <td>
+                    <%= cust.birthdate %>
+                  </td>
+                </tr>
+                <tr>
+                  <th>Phone</th>
+                  <td>
+                    <%= cust.phone %>
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    Address
+                  </th>
+                  <td>
+                    <%= cust.address %>
+                  </td>
+                </tr>
+                <tr>
+                  <th>Profession</th>
+                  <td>
+                    <%= cust.profession %>
+                  </td>
+                </tr>
+              </table>
+            </div>
+
+            <div class="selectedFrame">
+              <table class="myFrame">
+                <tr>
+                  <td rowspan="2" class="img1"><img
+                      src="data:image/<%=frame.FVphoto.contentType%>;base64,<%=frame.FVphoto.data.toString('base64')%>">
+                  </td>
+                  <td style="border: 1px solid #DFDFDE;">
+                    <%= frame.name %>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="border: 1px solid #DFDFDE;">
+                    <%= frame.brand %>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="img2">
+                    <div>
+                      <p>Selected Frame</p>
+                    </div>
+                  </td>
+                  <td style="border: 1px solid #DFDFDE; height: 30%;">
+                    <%= frame.price %>
+                  </td>
+                </tr>
+              </table>
+            </div>
+
+            <div class="frame">
+              <div class="heading">
+                <h2>Frame Measurements</h2>
+              </div>
+
+              <div class="frameParameters">
+                <div class="form-group">
+                  <table class="frameParams">
+                    <th>PD</th>
+                    <th>PH</th>
+                    <th>A</th>
+                    <th>B</th>
+                    <th>DBL</th>
+                    <th>V</th>
+                    <th>P</th>
+                    <th>W</th>
+                    <tr>
+                      <td>
+                        <%= parameters.pd %>
+                      </td>
+                      <td>
+                        <%= parameters.ph %>
+                      </td>
+                      <td>
+                        <%= parameters.tw %>
+                      </td>
+                      <td>
+                        <%= parameters.et %>
+                      </td>
+                      <td>
+                        <%= parameters.bd %>
+                      </td>
+                      <td>
+                        <%= parameters.vd %>
+                      </td>
+                      <td>
+                        <%= parameters.pa %>
+                      </td>
+                      <td>
+                        <%= parameters.fwa %>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+
+              <div class="heading">
+                <h2 class="prec">Presciption</h2>
+              </div>
+
+              <div class="precContainer">
+                <table class="precTable">
+                  <th class="first hrHeader"></th>
+                  <th class="hrHeader">Sphere</th>
+                  <th class="hrHeader">Cylinder</th>
+                  <th class="hrHeader">Axis</th>
+                  <tr>
+                    <th class="first vrHeader">Right Eye</th>
+                    <td>
+                      <%= parameters.res %>
+                    </td>
+                    <td>
+                      <%= parameters.rec %>
+                    </td>
+                    <td>
+                      <%= parameters.rea %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th class="first vrHeader">Left Eye</th>
+                    <td>
+                      <%= parameters.les %>
+                    </td>
+                    <td>
+                      <%= parameters.lec %>
+                    </td>
+                    <td>
+                      <%= parameters.lea %>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+
+              <div class="heading">
+                <h2 class="empidHeading">Employee ID</h2>
+              </div>
+
+              <div class="empid">
+                <form action="/shop/<%= shopid %>/<%= cust.id %>/order/<%= frame.id %>?custName=<% cust.name %>&frameName=<% frame.name %>" method="post" class="add-shop-form">
+                  <input type="text" name="empid" required
+                  style="height: 30px; width: 300px; margin: 10px 0 "><br>
+                  <button type="submit" class="btn-info">Place Order</button>
+                </form>
+              </div>
+            </div> <!-- end of addShopForm -->
+          </div> <!-- end of form-area -->
+        </div> <!-- end of main-content -->
+      </div> <!-- end of home-content -->
+    </div> <!-- end of home-content -->
+
+  </section>
+
+  <script>
+    let sidebar = document.querySelector(".sidebar");
+    let sidebarBtn = document.querySelector(".sidebarBtn");
+    sidebarBtn.onclick = function () {
+      sidebar.classList.toggle("active");
+      if (sidebar.classList.contains("active")) {
+        sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+      } else
+        sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+    }
+
+// function validateFrame(){
+//   if(document.getElementById('type').value == "null"){
+//     alert("Please Select Type");
+//     document.getElementById('type').focus();
+//   }
+// }
+  </script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>

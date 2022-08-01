@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    <%= title %>
+  </title>
+
+  <!-- Boxicons CDN Link -->
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <style>
+    /* Googlefont Poppins CDN Link */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+    <%- include('./sidebarNheader.css') %>
+    
+    
+  
+
+    
+
+    
+.backButton{
+  margin-left: 1rem;
+  position: fixed;
+  /* width: 100%; */
+}
+    .btn-info {
+      align-items: center;
+      background-color: #424874;
+      border: 0;
+      border-radius: 2rem;
+      box-sizing: border-box;
+      color: #393E46;
+      cursor: pointer;
+      display: inline-flex;
+      font-family: -apple-system, system-ui, system-ui, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      justify-content: center;
+      line-height: 20px;
+      max-width: 480px;
+      min-height: 40px;
+      min-width: 0px;
+      overflow: hidden;
+      padding: 0px;
+      padding-left: 20px;
+      padding-right: 20px;
+      text-align: center;
+      touch-action: manipulation;
+      transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+      user-select: none;
+      -webkit-user-select: none;
+      vertical-align: middle;
+      color: white;
+    }
+ 
+
+    .btn-info:hover,
+    .btn-info:focus {
+      background-color: #8d95cf;
+      color: #ffffff;
+    }
+
+    /* Form Input*/
+    /* .inputstl {
+      padding: 9px;
+      border: solid 1px #4B718B;
+      outline: 0;
+      background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #CDDBE4), to(#FFFFFF));
+      background: -moz-linear-gradient(top, #FFFFFF, #CDDBE4 1px, #FFFFFF 25px);
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px;
+      -moz-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px;
+      -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px;
+    }*/
+    
+    .addFrameText{
+      height: 6rem;
+      width: 100%;
+      /* padding: 0.5rem 0; */
+      text-align: center;
+      color: #424874;
+    }
+    .home-heading {
+      color: #333;
+      padding-left: 5%;
+      position: relative;
+      top: 2rem;
+
+      margin:auto;
+      font-weight: bold;
+      font-size: 3rem;
+      height: 5rem;
+    }
+
+    .addFrameForm {
+      width: 50%;
+      height: auto;
+      padding: 2rem 3rem;
+      margin-left: 25%;
+      background-color: #dcd6f7;
+      border-radius: 10px;
+      margin-left: 25%;
+    }
+    
+    input[type=text],
+    input[type=tel],
+    input[type=email],
+    input[type=date],
+    input[type=password],
+    input[type=number] {
+      /*width: 40rem;
+      height: 3.5rem;
+      padding: 1rem;
+      outline: none;
+      border: 2px solid rgba(51, 51, 51, 0.356);*/
+
+      font-family: Georgia, "Times New Roman", Times, serif;
+      background: rgba(255, 255, 255, .1);
+      border: none;
+      border-radius: 4px;
+      font-size: 15px;
+      margin: 0;
+      outline: 0;
+      padding: 10px;
+      width: 100%;
+      box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      background-color: #e8eeef;
+      color: #8a97a0;
+      -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+      margin-bottom: 30px;
+      height: 3.5rem;
+    }
+
+    input[type=text]:focus,
+    input[type=tel]:focus,
+    input[type=email]:focus,
+    input[type=date]:focus,
+    input[type=password]:focus,
+    input[type=number]:focus {
+      background: #d2d9dd;
+    }
+    input[type=text]:hover,
+    input[type=tel]:hover,
+    input[type=email]:hover,
+    input[type=date]:hover,
+    input[type=password]:hover,
+    input[type=number]:hover {
+      cursor: pointer;
+      background: #d2d9dd;
+      border: 2px #424874 solid;
+    }
+
+    .inputstlDropDown {
+      /* width: 40rem;
+      height: 4rem;
+      padding: 1rem;
+      outline: none;
+      border: 2px solid rgba(51, 51, 51, 0.356);*/
+
+      font-family: Georgia, "Times New Roman", Times, serif;
+      background: rgba(255, 255, 255, .1);
+      border: none;
+      border-radius: 4px;
+      font-size: 15px;
+      margin: 0;
+      outline: 0;
+      padding: 10px;
+      width: 100%;
+      box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      background-color: #e8eeef;
+      color: #424874;
+      -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+      margin-bottom: 30px;
+      height: 4rem;
+    }
+
+    .inputstlDropDown:hover{
+      cursor: pointer;
+      background: #d2d9dd;
+      border: 2px #424874 solid;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="sidebar">
+    <div class="logo-details">
+      <i class='bx bxl-c-plus-plus'></i>
+      <span class="logo_name">LensePro</span>
+    </div>
+    <ul class="nav-links">
+      <li>
+        <a href="/adminHome" class="active">
+          <i class='bx bx-grid-alt'></i>
+          <span class="links_name">Frames</span>
+        </a>
+      </li>
+      <li>
+        <a href="/admin/shopList">
+          <i class='bx bx-box'></i>
+          <span class="links_name">Shops</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-list-ul'></i>
+          <span class="links_name">Order list</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-pie-chart-alt-2'></i>
+          <span class="links_name">Analytics</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-book-alt'></i>
+          <span class="links_name">Frame Model</span>
+        </a>
+      </li>
+      <li>
+        <a href="/admin/messages">
+          <i class='fa fa-envelope'></i>
+          <span class="links_name">Messages</span>
+        </a>
+      </li>
+      <li class="log_out">
+        <a href="/admin/logout">
+          <i class='bx bx-log-out'></i>
+          <span class="links_name">Log out</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <section class="home-section">
+    <%- include('./navbar/navbar.ejs') %>
+
+    <div class="home-content">
+      <div class="home-header">
+        <div class="back-button">
+          <form action="/admin/adminHome"><button type="submit" class="backButton btn-info">Back</button></form>
+        </div>
+        <div class="addFrameText">
+          <h1 class="home-heading" style="color: #393E46;">Edit Frame Details</h1>
+        </div>
+      </div>
+      <div class="addFrameForm">
+        <form action="/admin/updateFrame?frameid=<%= frame.id %>" enctype="multipart/form-data" method="post">
+          <div class="form-group">
+            <label for="modelNumber">Model Number</label>
+            <input type="text" class="form-control inputstl" name="modelNumber" id="modelNumber"
+              placeholder="Model Number" value="<%= frame.modelNumber %>" required>
+          </div>
+
+          <div class="form-group">
+            <label for="size">Frame Name</label>
+            <input type="text" class="form-control inputstl" name="name" id="name" placeholder="Frame Name"
+              value="<%= frame.name %>" required>
+          </div>
+          <div class="form-group">
+            <label for="brand">Brand</label>
+            <select class="form-control inputstlDropDown" name="brand" id="brand" required>
+              <% brands.forEach( brand=>{ %>
+                <% if(brand.selected==true){ %>
+                  <option value="<%= brand.name %>" selected>
+                    <%= brand.name %>
+                  </option>
+                  <%}else{ %>
+                    <option value="<%= brand.name %>">
+                      <%= brand.name %>
+                    </option>
+                    <% }}); %>
+            </select>
+
+          </div>
+          <div class="form-group">
+            <label for="Inputselect">Frame Type</label>
+            <select class="form-control inputstlDropDown" name="frameType" id="frameType" required>
+              <% frameTypes.forEach( frameType=>{ %>
+                <% if(frameType.selected==true){ %>
+                  <option value="<%= frameType.type %>" selected>
+                    <%= frameType.type %>
+                  </option>
+                  <%}else{ %>
+                    <option value="<%= frameType.type %>">
+                      <%= frameType.type %>
+                    </option>
+                    <% }}); %>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="color">Color</label>
+            <select class="form-control inputstlDropDown" name="color" id="color" required>
+              <% colors.forEach( color=>{ %>
+                <% if(color.selected==true){ %>
+                  <option value="<%= color.name %>" id="<%= color.value %>" selected>
+                    <%= color.name %>
+                  </option>
+                  <%}else{ %>
+                    <option value="<%= color.name %>" id="<%= color.value %>">
+                      <%= color.name %>
+                    </option>
+                    <% }}); %>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="price">Price</label>
+            <input type="number" class="form-control inputstl" name="price" id="price" placeholder="Price"
+              value="<%= frame.price %>" required>
+          </div>
+          <div class="form-group">
+            <label for="material">Material</label>
+            <select class="form-control inputstlDropDown" name="material" id="material" required>
+              <% materials.forEach( material=>{ %>
+                <% if(material.selected==true){ %>
+                  <option value="<%= material.material %>" selected>
+                    <%= material.material %>
+                  </option>
+                  <%}else{ %>
+                    <option value="<%= material.material %>">
+                      <%= material.material %>
+                    </option>
+                    <% }}); %>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="shape">Shape</label>
+            <select class="form-control inputstlDropDown" name="shape" id="shape" required>
+              <% shapes.forEach( shape=>{ %>
+                <% if(shape.selected==true){ %>
+                  <option value="<%= shape.name %>" selected>
+                    <%= shape.name %>
+                  </option>
+                  <%}else{ %>
+                    <option value="<%= shape.name %>">
+                      <%= shape.name %>
+                    </option>
+                    <% }}); %>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="size">Size</label>
+            <select class="form-control inputstlDropDown" name="size" id="size" required>
+              <% size.forEach( size=>{ %>
+                <% if(size.selected==true){ %>
+                  <option value="<%= size.name %>" selected>
+                    <%= size.name %>
+                  </option>
+                  <%}else{ %>
+                    <option value="<%= size.name %>">
+                      <%= size.name %>
+                    </option>
+                    <% }}); %>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="size">Frame Width (in mm)</label>
+            <input type="number" class="form-control inputstl" name="width" id="width" placeholder="ex. 150"
+              value="<%= frame.width %>" required>
+          </div>
+          <!-- <div class="form-group">
+            <label for="size">Frame Dimension</label>
+            <input type="text" class="form-control inputstl" name="dimension" id="dimension"
+              pattern="[0-9]{2}-[0-9]{2}-[0-9]{3}" placeholder="ex. 50-50-100">
+          </div> -->
+          <div class="form-group">
+            <label for="weight">Weight group</label>
+            <select class="form-control inputstlDropDown" name="weightGroup" id="weightGroup" required>
+              <option disabled="true" value="">Select Weight Group</option>
+              <% weightGroups.forEach( weightGroup=>{ %>
+                <% if(weightGroup.selected==true){ %>
+                  <option value="<%= weightGroup.group %>" selected>
+                    <%= weightGroup.group %>
+                  </option>
+                  <%}else{ %>
+                    <option value="<%= weightGroup.group %>">
+                      <%= weightGroup.group %>
+                    </option>
+                    <% }}); %>
+            </select>
+          </div>
+          <div class="form-group framePhoto">
+            <label for="spectaclePhoto">Frame Photo</label><br>
+            <div class="images" style="display: flex; flex-wrap: wrap; justify-content: space-evenly;">
+                <img src="data:image/<%=frame.FVphoto.contentType%>;base64,
+                <%= frame.FVphoto.data.toString('base64') %>" width=150 height=150 style="margin: 5px;">
+                <img src="data:image/<%=frame.SVphoto.contentType%>;base64,
+                <%= frame.SVphoto.data.toString('base64') %>" width=150 height=150 style="margin: 5px;">
+                <img src="data:image/<%=frame.AVphoto.contentType%>;base64,
+                <%= frame.AVphoto.data.toString('base64') %>" width=150 height=150 style="margin: 5px;">
+            </div>
+            <div class="photoUpload">
+              <div class="FVPhotoUpload">
+                <label for="imageFV">Front View</label>
+                <input type="file" class="form-control-file" name="images" id="imageFV" accept="image/*"  required>
+              </div>
+              <div class="TVPhotoUpload">
+                <label for="imageSV">Side View</label>
+                  <input type="file" class="form-control-file" name="images" id="imageSV" accept="image/*"  required>
+              </div>
+              <div class="AVPhotoUpload">
+                <label for="imageAV">120 degree View</label>
+                <input type="file" class="form-control-file" name="images" id="imageAV" accept="image/*"  required>
+              </div>
+            </div>
+          </div>
+          <div class="update-frame-button" style="width: 100%; display: flex; justify-content: center;">
+            <button type="submit" class="btn btn-info">Update</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+
+  </section>
+  <script>
+
+    function prevalue() {
+      const frametype = document.forms.select["frameType"];
+
+      frametype.forEach(element => {
+        if (element == frame.frameType) {
+          element.selected = "true";
+        }
+      });
+    }
+
+    prevalue()
+  </script>
+  <script>
+
+    const color = document.form.select['color'];
+
+    color.option.style.backgroundColor = color.option.value;
+
+  </script>
+
+  <script>
+    let sidebar = document.querySelector(".sidebar");
+    let sidebarBtn = document.querySelector(".sidebarBtn");
+    sidebarBtn.onclick = function () {
+      sidebar.classList.toggle("active");
+      if (sidebar.classList.contains("active")) {
+        sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+      } else
+        sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+    }
+
+    // function validateFrame(){
+    //   if(document.getElementById('type').value == "null"){
+    //     alert("Please Select Type");
+    //     document.getElementById('type').focus();
+    //   }
+    // }
+
+  </script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>

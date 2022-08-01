@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frames</title>
+
+    <style>
+        <%- include('./adminHome/filters.css') %>
+        <%- include('./adminHome/frames.css') %>
+    </style>
+
+<script type="text/javascript">
+  
+    var slideIndex = 1;
+  // showSlides(slideIndex);
+  
+  // Next/previous controls
+  function plusSlides(no, n) {
+    showSlides(no, slideIndex += n);
+  }
+  
+  // Thumbnail image controls
+  function currentSlide(no, n) {
+    showSlides(no, slideIndex = n);
+  }
+  
+  function showSlides(no,n) {
+    var i;
+    var slides = document.getElementsByClassName("frameSlides"+no);
+    var dots = document.getElementsByClassName("dot");
+    if (n > slides.length) {slideIndex = 1}
+    if (n < 1) {slideIndex = slides.length}
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex-1].style.display = "block";
+    dots[slideIndex-1].className += " active";
+  }
+  
+  var slideNumber = 0; 
+  showSlidesAutomatic(null);
+  var timeInterval = 1000;
+  
+  function showSlidesAutomatic(no){
+    
+    slideToBeShown = ((slideNumber % 3) + 1 );
+    
+    // setTimeout(function(){}, 1000)
+    setTimeout( function() {
+      showSlides(no, slideIndex = slideToBeShown );
+      showSlidesAutomatic(no);
+  
+    }, timeInterval);
+    slideNumber++;
+  }
+  
+  function stopSlideshow(no){
+    
+    showSlides(no, slideIndex = 1)
+  }
+  
+  function resetFilters(){
+    
+    const brand = document.getElementById('brand');
+    const color = document.getElementById('color');
+    const size = document.getElementById('size');
+    const material = document.getElementById('material');
+    const price = document.getElementById('price');
+  
+    brand.value = "";
+    color.value = "";
+    size.value = "";
+    material.value = "";
+    price.value = "";
+   
+    
+  }
+    </script>
+    
+</head>
+<body>
+    
+    <div class="home-header">
+        <div class="top-heading">
+          <div class="home-heading">
+            <h1>Frames</h1>
+          </div><!-- end   home-heading -->
+          <div class="search-box">
+            <form action="/admin/adminHome/search" >
+                  <input class="search-input" id="search-input" name="search" placeholder="Search Here..." required>
+                  <button type="submit" class="search-btn" id="search-btn"><i class="fa fa-search"></i></button>
+            </form>
+          </div>
+          <div class="addFrameButton">
+            <form action="/admin/addFrameForm">
+              <button type="submit" class="btn-info">Add New Frame</button>
+            </form>
+          </div><!-- end   addFrameButton -->
+        </div><!-- end   top-heading-->
+        <div class="filters">
+          <form action="/admin/adminHome/filters">
+            <!-- <div class="reset">
+              <button id="reseting" class="reseting"><i class="fa fa-refresh"></i></button>
+            </div> -->
+            <!-- <div class="reset">
+              <button type="reset" id="resetBtn" onclick="resetFilters()">
+                <a href="/admin/adminHome"><i class="fa fa-refresh"></i></a>
+              </button>
+            </div> -->
+          <div class="brand">
+            <select class="form-control inputstlDropDown" name="brand" id="brand" >
+              <option selected value="" class="option">Brand</option>
+              
+              <%
+              if(!filters){ 
+              brands.forEach( brand =>{ %>
+                <option value="<%= brand.name %>" ><%= brand.name %></option>
+              <% });}else{ %>
+              <% brands.forEach( brand=>{ %>
+                <% if(brand.selected==true){ %>
+                  <option value="<%= brand.name %>" selected>
+                    <%= brand.name %>
+                  </option>
+                  <%}else{ %>
+                    <option value="<%= brand.name %>">
+                      <%= brand.name %>
+                    </option>
+                    <% }});} %>
+            </select>
+          </div><!-- end   brand-->
+          <div class="color">
+            <select class="form-control inputstlDropDown" name="color" id="color">
+              <div class="dropdownMenu">
+                <option selected value="" class="option">Color</option>
+                <% if(!filters){
+                colors.forEach( color =>{ %>
+                  <option value="<%= color.name %>" id="<%= color.value %>" ><%= color.name %></option>
+                <% }); } else { %>
+                  <% colors.forEach( color=>{ %>
+                    <% if(color.selected==true){ %>
+                      <option value="<%= color.name %>" id="<%= color.value %>" selected>
+                        <%= color.name %>
+                      </option>
+                      <%}else{ %>
+                        <option value="<%= color.name %>" id="<%= color.value %>">
+                          <%= color.name %>
+                        </option>
+                        <% }}); }%>
+              </div>
+            </select>
+          </div><!-- end   color-->
+          <div class="size">
+            <select class="form-control inputstlDropDown" name="size" id="size">
+              <option selected value="" class="option">Size</option>
+              <% if(!filters) {
+                size.forEach( size =>{ %>
+                <option value="<%= size.name %>" ><%= size.name %></option>
+              <% }); } else { %>
+                <% size.forEach( size=>{ %>
+                  <% if(size.selected==true){ %>
+                    <option value="<%= size.name %>" selected>
+                      <%= size.name %>
+                    </option>
+                    <%}else{ %>
+                      <option value="<%= size.name %>">
+                        <%= size.name %>
+                      </option>
+                      <% }}); }%>
+            </select>
+          </div><!-- end   size-->
+          <div class="material">
+            <select class="form-control inputstlDropDown" name="material" id="material">
+              <option selected value="">Material</option>
+              <% if(!filters) { materials.forEach( material =>{ %>
+                <option value="<%= material.material %>" ><%= material.material %></option>
+              <% }); } else { %>
+                <% materials.forEach( material=>{ %>
+                  <% if(material.selected==true){ %>
+                    <option value="<%= material.material %>" selected>
+                      <%= material.material %>
+                    </option>
+                    <%}else{ %>
+                      <option value="<%= material.material %>">
+                        <%= material.material %>
+                      </option>
+                      <% }}); } %>
+            </select>
+          </div><!-- end   material-->
+          <div class="price">
+            <select class="form-control inputstlDropDown" name="price" id="price">
+              <option value="" selected>Price Range</option>
+              <% if(!filters) { priceRanges.forEach( priceRange =>{ %>
+                <option value="<%= priceRange.range %>" ><%= priceRange.range %></option>
+              <% }); } else { %>
+                <% priceRanges.forEach( priceRange=>{ %>
+                  <% if(priceRange.selected==true){ %>
+                    <option value="<%= priceRange.range %>" selected>
+                      <%= priceRange.range %>
+                    </option>
+                    <%}else{ %>
+                      <option value="<%= priceRange.range %>">
+                        <%= priceRange.range %>
+                      </option>
+                      <% }}); } %>
+              </select>
+          </div>
+          <div class="search">
+            <button type="submit"><i class="fa fa-search"></i></button>
+          </div>
+        </form>
+        </div><!-- end   filters-->
+      </div><!-- end   home-header-->
+      <div class="frames">
+        <% if(frameData.length!=0 ){ %>
+          <div class="frames-container">
+            <% 
+            var i=0; 
+            frameData.forEach(function(frames){
+              i++; 
+            %>
+              <div class="frame" >
+                <div class="frame-image" >
+                  <div class="images" >
+                        <div class="slideshow-container">
+                          <!-- onmouseout="stopSlideshow(<%= i %>)" -->
+                          <div class="3-images" onmouseover="(showSlidesAutomatic(<%= i %>))">
+                                <div class="mySlides first fade frameSlides<%= i %>">
+                                  <div class="numbertext">1 / 3</div>
+                                  <img src="data:image/<%=frames.FVphoto.contentType%>;base64,
+                                  <%=frames.FVphoto.data.toString('base64')%>"  >                      
+                                  <div class="text">Front View</div>
+                                </div>
+                              
+                                <div class="mySlides fade frameSlides<%= i %>">
+                                  <div class="numbertext">2 / 3</div>
+                                  <img src="data:image/<%=frames.SVphoto.contentType%>;base64,
+                                  <%=frames.SVphoto.data.toString('base64')%>" >                      
+                                  <div class="text">Side View</div>
+                                </div>
+                              
+                                <div class="mySlides fade frameSlides<%= i %>">
+                                  <div class="numbertext">3 / 3</div>
+                                  <img src="data:image/<%=frames.AVphoto.contentType%>;base64,
+                                  <%=frames.AVphoto.data.toString('base64')%>" >
+                                  <div class="text">120 degree View</div>
+                                </div>
+                          </div>
+                          <!-- Next and previous buttons -->
+                          <a class="prev" onclick="plusSlides(<%= i %>, -1)">&#10094;</a>
+                          <a class="next" onclick="plusSlides(<%= i %>, 1)">&#10095;</a>
+                        </div>
+                        <br>
+                        
+                        <!-- The dots/circles -->
+                        <!-- <div style="text-align:center">
+                          <span class="dot" onclick="currentSlide(1)"></span>
+                          <span class="dot" onclick="currentSlide(2)"></span>
+                          <span class="dot" onclick="currentSlide(3)"></span>
+                        </div> -->
+                  
+                  </div>
+                  <div class="frame-info">
+                    <div class="info">
+                      <p style="font-size: 125%;"><b><%= frames.name %></b></p>
+                      <p><b>Brand :</b> <%= frames.brand %></p>
+                      <p><b>Price :</b> <%= frames.price %> Rs.</p>
+                    </div>
+                    <div class="action-btn">
+                      <form action="/admin/<%= frames.id %>/editPage" ><button >Edit</button></form>
+                      <form action="/admin/<%= frames.id %>/delete" ><button onclick="return confirm('Are you sure you want to delete <%= frames.name %> frame?')" >Delete</button></form>
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="operations">
+                  <a href="/admin/viewFrameDetails"><i class="fas fa-eye"></i></a>
+                  <a href="/admin/updateFrameDetails"><i class="fas fa-edit"></i></a>
+                  <a href="/admin/deleteFrame"><i class="fa fa-remove"></i></a>
+                </div> -->
+              </div>
+              
+              <% }) %>
+              <%
+              var framePosition = 3 - (i%3);
+              if( framePosition < (4 - (i%4))){
+                framePosition = 4 - (i%4)
+              }
+                for(var j=0; j < framePosition; j++){
+                  %>
+                    <div class="frame" style="width: 332px"></div>
+                  <%
+                }
+              %>
+          </div>
+          <% } else{ %>
+            <h1 style="width: 100%; text-align: center; ">No Frame Found!</h1>
+            <% } %>
+      </div><!-- end   frames-->
+
+</body>
+</html>

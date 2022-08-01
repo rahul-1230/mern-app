@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    <%= title %>
+  </title>
+
+  
+  <!-- Boxicons CDN Link -->
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+  <style>
+    /* Googlefont Poppins CDN Link */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+    <%- include('./sidebarNheader.css') %>
+   
+    
+    .home-heading {
+      text-align: left;
+      font-weight: bold;
+      font-size: 2.5rem;
+      position: relative;
+      /* left: 10rem; */
+      text-align: center;
+      /* top: 3rem; */
+    }
+
+
+    .backButton:hover,
+    .backButton:focus {
+      background-color: #0d777c;
+      color: #ffffff;
+    }
+
+    .backButton:active {
+      background-color: #0d777c;
+      color: #ffffff;
+    }
+
+    .backButton:disabled {
+      cursor: not-allowed;
+      background: rgba(0, 0, 0, .08);
+      color: rgba(0, 0, 0, .3);
+    }
+
+    .form-heading {
+      color: #333;
+      padding-left: 5rem;
+      position: relative;
+      top: 3rem;
+    }
+
+    .addShopForm {
+      background-color: #dcd6f7;
+      width: 80%;
+      height: auto;
+      margin-left: 10%;
+      margin-top: 10px;
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.582);
+      border-radius: 2rem;
+      padding-bottom: 1rem;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: auto auto;
+      padding: 5rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    input[type=text],
+    input[type=tel],
+    input[type=email],
+    input[type=date] {
+      width: 30rem;
+      height: 3.5rem;
+      padding: 1rem;
+      outline: none;
+      border: 2px solid rgba(51, 51, 51, 0.356);
+    }
+
+    /* textarea {
+      width: 40rem;
+      height: 6rem;
+      padding: 1rem;
+      outline: none;
+
+      border: 2px solid rgba(51, 51, 51, 0.356);
+    } */
+    .btn-info {
+      align-items: center;
+      background-color: #424874;
+      border: 0;
+      border-radius: 2rem;
+      box-sizing: border-box;
+      color: #393E46;
+      cursor: pointer;
+      display: inline-flex;
+      font-family: -apple-system, system-ui, system-ui, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      justify-content: center;
+      line-height: 20px;
+      max-width: 480px;
+      min-height: 40px;
+      min-width: 0px;
+      overflow: hidden;
+      padding: 0px;
+      padding-left: 20px;
+      padding-right: 20px;
+      text-align: center;
+      touch-action: manipulation;
+      transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+      user-select: none;
+      -webkit-user-select: none;
+      vertical-align: middle;
+      color: white;
+    }
+ 
+
+    .btn-info:hover,
+    .btn-info:focus {
+      background-color: #8d95cf;
+      color: #ffffff;
+    }
+    .add-shop-button {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      /* left: 5rem; */
+      /* top: -3rem; */
+    }
+
+  </style>
+  <!-- <style href="../ShopCSS/signup.css" type="stylesheet"></style> -->
+</head>
+
+<body>
+
+  <div class="sidebar">
+    <div class="logo-details">
+      <i class='bx bxl-c-plus-plus'></i>
+      <span class="logo_name">LensePro</span>
+    </div>
+    <ul class="nav-links">
+      <li>
+        <a href="/shop/<%= shopid %>/home">
+          <i class='bx bx-grid-alt'></i>
+          <span class="links_name">Frames</span>
+        </a>
+      </li>
+      <li>
+        <a href="/shop/<%= shopid %>/addCustPage" class="active">
+          <i class='bx bx-box'></i>
+          <span class="links_name">Add Customer</span>
+        </a>
+      </li>
+      <li>
+        <a href="/shop/<%= shopid %>/viewCusts">
+          <i class='bx bx-list-ul'></i>
+          <span class="links_name">All Customers</span>
+        </a>
+      </li>
+      <li>
+        <a href="/shop/<%= shopid %>/analytics">
+          <i class='bx bx-pie-chart-alt-2'></i>
+          <span class="links_name">Reports</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="/shop/<%= shopid %>/contactAdmin">
+          <i class='bx bx-book-alt'></i>
+          <span class="links_name">Contact Admin</span>
+        </a>
+      </li>
+      <li class="log_out">
+        <a href="/shop/logout">
+          <i class='bx bx-log-out'></i>
+          <span class="links_name">Log out</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <section class="home-section">
+    <!-- <div class="navbar"> -->
+    <nav>
+      <div class="sidebar-button">
+        <i class='bx bx-menu sidebarBtn'></i>
+        <span class="role">My Shop</span>
+      </div>
+
+      <div class="profile-details">
+        <!--<img src="images/profile.jpg" alt="">-->
+        <span class="admin_name">
+            <a href="/shop/profile/<%= shopid %>"><i class='bx bx-user'></i></a></span>
+      </div>
+    </nav>
+
+    <div class="home-content">
+     
+      <div class="main-content" style="height: auto;">
+        <div class="form-area">
+          <div class="addShopText">
+            <p class="home-heading">Add Customer</h1>
+          </div><!-- end of addShopText -->
+
+          <div class="addShopForm">
+            <form action="/shop/<%= shopid %>/addCust" method="post" class="add-shop-form">
+              <div class="accountInfo">
+                <div class="form-heading">
+                  <h3>Contact Info</h3>
+                </div>
+                <div class="grid-container">
+                  <div class="form-group">
+                    <label for="name">First Name</label>
+                    <input type="text" class="input-field" name="fname" id="fname" placeholder="First Name" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="name">Last Name</label>
+                    <!-- <div style="display: flex; flex-direction: row; padding: 0;">
+                      <div style="border: groove; width:30px; display: flex; border-right: none;"><i class="fa fa-user" style="margin: auto;"></i></div><input style=" margin-left: 0;" type="text" class="input-field" name="lname" id="lname" placeholder="Last Name" required>
+                    </div> -->
+                    <input style=" margin-left: 0;" type="text" class="input-field" name="lname" id="lname" placeholder="Last Name" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="input-field" name="email" id="email" placeholder="Email" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="tel" pattern="[0-9]{10}" class="input-field" name="phone" id="phone"
+                      placeholder="0123456789" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="text" class="input-field" name="address" id="address" placeholder="Address" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="city">City</label>
+                    <input type="text" name="city" id="city" placeholder="City" required>
+                    <!-- Dropdown for city -->
+                  </div>
+                  <div class="form-group">
+                    <label for="gender">Select Gender</label>
+                    <div class="radioGender"><input type="radio" id="male" name="gender" value="male" required><label
+                        for="male" style="margin-left: 1rem;">Male</label></div>
+                    <div class="radioGender"><input type="radio" id="female" name="gender" value="female"><span><label
+                          for="female" style="margin-left: 1rem;">Female</label></span></div>
+                  </div>
+                  <div class="form-group">
+                    <label for="profession">Profession</label>
+                    <input type="text" class="input-field" name="profession" id="profession" placeholder="Profession"
+                      required>
+                  </div>
+                  <div class="form-group">
+                    <label for="birthDate">Birth Date</label>
+                    <input type="date" class="input-field" name="birthDate" id="birthDate" placeholder="Select Date"
+                      required>
+                  </div>
+                  <!-- <div class="form-group">
+                  <label for="logo">Logo</label>
+                  <input type="file" class="input-field" name="logo" id="logo" accept="image/*" required>
+                </div> -->
+                </div><!-- end of grid-container -->
+              </div> <!-- end of shopInfo -->
+              <div class="add-shop-button">
+                <button type="submit" class="btn btn-info">Add Customer</button>
+              </div>
+            </form>
+          </div> <!-- end of addShopForm -->
+        </div> <!-- end of form-area -->
+      </div> <!-- end of main-content -->
+    </div> <!-- end of home-content -->
+
+  </section>
+
+  <script>
+    let sidebar = document.querySelector(".sidebar");
+    let sidebarBtn = document.querySelector(".sidebarBtn");
+    sidebarBtn.onclick = function () {
+      sidebar.classList.toggle("active");
+      if (sidebar.classList.contains("active")) {
+        sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+      } else
+        sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+    }
+
+// function validateFrame(){
+//   if(document.getElementById('type').value == "null"){
+//     alert("Please Select Type");
+//     document.getElementById('type').focus();
+//   }
+// }
+  </script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>

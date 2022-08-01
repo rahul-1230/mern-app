@@ -1,0 +1,130 @@
+  frameData.forEach(function(frames)
+
+
+   <%
+          if(frameData.length!=0 ){
+            let frames;
+            for(var i=0; i<frameData.length;i++){
+              for(var j=0;j<3;j++){
+                frames = frameData[i*3+j];
+          %>
+              <img src="data:image/<%=frames.photo.contentType%>;base64,
+                    <%=frames.photo.data.toString('base64')%>" width=300 height=150 style="margin: 5px;">       
+          <% } %>
+              <br />
+          <% } %>
+          <% } else{ %>
+              <tr>
+                  <td colspan="7"><h1>No Frame Found!</h1></td>
+              </tr>
+          <% } %>
+
+
+          <table>
+        <tr>
+        <th>Name</th>
+        <th>email</th>
+        </tr>
+        <%
+        if(custs.length!=0){
+            custs.forEach(cust=>{
+        %>
+        <tr>
+            <td>cust.name</td>
+            <td>cust.email</td>
+        </tr>
+        <%
+        })}else{
+        %>
+        <h1>No data found!</h1>
+        <%
+        }
+        %>
+    </table>
+
+
+    shopHome
+
+     <div class="home-header">
+        <div class="top-heading">
+        <div class="home-heading">
+          <h1>Frames</h1>
+        </div><!-- end   home-heading -->
+        </div><!-- end   top-heading-->
+        <div class="filters">
+          <div class="brand" >
+            <select class="form-control inputstlDropDown" name="brand" id="brand">
+              <option selected value="any">Brand</option>
+            </select>
+          </div><!-- end   brand-->
+          <div class="color" >
+            <select class="form-control inputstlDropDown" name="color" id="color">
+              <div class="dropdownMenu">
+              <option selected value="any" >Color</option>
+              <option >Black</option>
+              <option >Brown</option>
+              <option >Blue</option>
+              <option >Grey</option>
+              <option >Gold</option>
+              <option >Red</option>
+              <option >Silver</option>
+              <option >Tortoise</option>
+              <option >Gunmetal</option>
+              <option >Green</option>
+              <option >Purple</option>
+              <option >Pink</option>
+              <option >White</option>
+              <option >Golden</option>
+              <option >Maroon</option>
+              <option >Rose Brown</option>
+              <option >Transparent</option>
+            </div>
+            </select>
+          </div><!-- end   color-->
+          <div class="size">
+            <select class="form-control inputstlDropDown" name="size" id="size">
+              <option selected value="any" >Size</option>
+              <option>Extra Narrow</option>
+              <option>Narrow</option>
+              <option>Medium</option>
+              <option>Wide</option>
+              <option>Extra Wide</option>
+            </select>
+          </div><!-- end   size-->
+          <div class="material">
+            <select class="form-control inputstlDropDown" name="material" id="material">
+              <option selected value="any" >Material</option>
+              <option>Metal</option>
+              <option>Plastic</option>
+            </select>
+          </div><!-- end   material-->
+        </div><!-- end   filters-->
+      </div><!-- end   home-header-->
+        <div class="frames">
+
+          <%
+          if(frameData.length!=0 ){
+          %>
+          <div class="frames-container">
+          <%
+            var i = 0;
+            frameData.forEach(function(frames){
+          %>
+            <div class="frame">
+                <div class="frame-image">
+                <img src="data:image/<%=frames.photo.contentType%>;base64,
+                  <%=frames.photo.data.toString('base64')%>" width=300 height=150 style="margin: 5px;">
+                </div>
+                <div class="operations">
+                  <a href="/admin/viewFrameDetails"><i class="fas fa-eye"></i></a>
+                  <a href="/admin/updateFrameDetails"><i class="fas fa-edit"></i></a>
+                  <a href="/admin/deleteFrame"><i class="fa fa-remove"></i></a>
+                </div>
+            </div>
+          <% }) %>
+        </div>
+          <% } else{ %>
+              <h1>No Frame Found!</h1>
+          <% } %>
+          
+        </div><!-- end   frames-->  

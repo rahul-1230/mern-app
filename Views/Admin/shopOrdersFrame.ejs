@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orders</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+            <%- include('./sidebarNheader.css') %>
+            <%- include('./button/button.css') %>
+    </style>
+    <style>
+
+        .orders .header{
+            width: 100%;
+            display: flex;
+        }
+        .orders .header .back-button{
+            position: absolute;
+            left: 0;
+        }
+        .orders .header .shop{
+            margin-left: auto;
+            margin-right: auto;
+            color: #424874;
+        }
+        .backBtn a{
+            color: white;
+        }
+    </style>
+
+<style>
+        table {
+  border-collapse: collapse;
+  position: static;
+  max-width: 100%;
+  background-color: #d2f6ff;
+  overflow: auto;
+  border-bottom: solid 1px rgb(0, 204, 255);
+  box-shadow: 0rem 0.3rem 0.1rem rgba(0, 0, 0, 0.5);
+}
+  th, td {
+  text-align: left;
+  padding: 8px 10px;
+  white-space: nowrap;
+}
+  th{
+  position: sticky;
+  top: 0;
+  text-align: center;
+}
+  tr{
+  border: none;
+  background-color: #dcd6f7;
+}
+  td {
+
+  border-right: solid 1px #424874; 
+  border-left: solid 1px #424874;
+}
+
+  table .actions{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+  table .actions button{
+  background-color: #4083ff;
+  width: 25px;
+  border-radius: 7px;
+  color: white;
+}
+
+
+  table .actions button:hover{
+  background-color: #003597;
+  cursor: pointer;
+  box-shadow: 0 1px 1px black;
+}
+
+/*   tr:nth-child(even){background-color: #dcd6f7} */
+
+  th {
+  background-color: #424874;
+  color: white;
+}
+    </style>
+    <style>
+        #shop-orders-table_wrapper{
+          margin: 1rem 0;
+          min-width: 300px;
+        }
+        #shop-orders-table_length, #shop-orders-table_filter, #shop-orders-table_info, #shop-orders-table_paginate{
+          margin: 0.5rem 0;
+        }
+      </style>
+     <style>
+        <%- include('./orders/allOrders.css') %>
+    </style>
+</head>
+<body>
+    
+    <div class="orders">
+        
+    <div class="header">
+       <div class="back-button">
+           <button class="btn-info backBtn">
+               <a href="/admin/orderList/shopwise">
+                   <i class="fa fa-arrow-left"></i>
+               </a>
+           </button>
+       </div>
+        <div class="shop">
+            <h2>
+                <%= shopname %>
+            </h2>
+
+       </div>
+    </div>
+       <div class="orderData">
+           <div class="all-orders">
+            <% 
+                if(orders.length != 0){
+                  %>
+                  <table id="shop-orders-table">
+                    <thead>
+                        <tr>
+                                <th>Name</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                                <th>Total</th>
+                                <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                  <%
+                    for( var i=0; i < orders.length; i++){
+                        %>
+                       
+                          <tr>
+                            <td><%= orders[i].customer.name %></td>
+                            <td><%= orders[i].customer.phone %></td>
+                            <td><%= orders[i].customer.email %></td>
+                            <td><%= orders[i].frame.price %></td>
+                            <td><%= orders[i].frame.name %></td>
+                          </tr>
+                        
+                        <%
+                    }
+                    %>
+                  </tbody>
+                </tbody>
+                </table>
+                <%
+                }
+            %>
+                
+    
+           </div>
+       </div>
+      </div><!-- orders -->
+ <!-- Datatable plugin JS library file -->
+ <!-- Datatable plugin CSS file -->
+ <link rel="stylesheet" href=
+ "https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" />
+
+ <!-- jQuery library file -->
+   <script type="text/javascript" 
+   src="https://code.jquery.com/jquery-3.5.1.js">
+   </script>
+ <script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js">
+</script>
+<script>
+
+/* Initialization of datatable */
+$(document).ready(function() {
+ $('#shop-orders-table').DataTable({ });
+});
+</script>
+</body>
+</html>

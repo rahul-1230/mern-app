@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orders</title>
+    <style>
+            <%- include('./sidebarNheader.css') %>
+        table {
+  border-collapse: collapse;
+  position: static;
+  max-width: 100%;
+  background-color: #d2f6ff;
+  overflow: auto;
+  border-bottom: solid 1px rgb(0, 204, 255);
+  box-shadow: 0rem 0.3rem 0.1rem rgba(0, 0, 0, 0.5);
+}
+  th, td {
+  text-align: left;
+  padding: 8px 10px;
+  white-space: nowrap;
+}
+  th{
+  position: sticky;
+  top: 0;
+  text-align: center;
+}
+  tr{
+  border: none;
+  background-color: #dcd6f7;
+}
+  td {
+
+  border-right: solid 1px #424874; 
+  border-left: solid 1px #424874;
+}
+
+  table .actions{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+  table .actions button{
+  background-color: #4083ff;
+  width: 25px;
+  border-radius: 7px;
+  color: white;
+}
+
+
+  table .actions button:hover{
+  background-color: #003597;
+  cursor: pointer;
+  box-shadow: 0 1px 1px black;
+}
+
+/*   tr:nth-child(even){background-color: #dcd6f7} */
+
+  th {
+  background-color: #424874;
+  color: white;
+}
+    </style>
+    <style>
+      .shops{
+        margin-top: 1rem;
+        position: relative;
+        height: calc(100% - 20px);
+        min-width: fit-content;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0 0 1rem 0;
+        border-radius: 2rem;
+        background-color: #dcd6f7;
+        overflow-y: auto;
+    }
+    .shops .header{
+      width: 100%;
+      text-align: center;
+      color: #424874;
+      font-family:'Times New Roman', Times, serif;
+    }
+    .shops .shoplist {
+      list-style-type: none;
+      width: 94%;
+      margin: 2rem 3%;
+      overflow-y: auto;
+    }
+    .shops .shoplist li a{
+      /* margin: 1rem 0; */
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+      background: #8d95cf;
+      padding-left: 2%;
+      padding-right: 2%;
+      color: rgb(13, 0, 133);
+      text-decoration: none;
+    }
+    
+    .shops .shoplist li a:hover{
+      background: #424874;
+      color: white;
+      cursor: pointer;
+    }
+    .shops .shoplist li a .profile-pic{
+      display: flex;
+      align-items: center;
+    }
+    .shops .shoplist li a .profile-info{
+      padding: 0.5rem 0;
+    }
+    </style>
+     <style>
+        <%- include('./orders/allOrders.css') %>
+    </style>
+</head>
+<body>
+    
+    <div class="orders">
+        <div class="orderListNav">
+                <div class="allOrders first" >
+                            <a href="/admin/ordersFrame">All Orders</a>
+                </div>
+                <div class="shopwise-orders activeList" >
+                    <a href="#">Shop wise</a>
+                </div>
+        </div>
+    
+        <div class="shops">
+
+          <ul class="shoplist" id="shoplist">
+            <%
+            var i=0;
+            if(shops.length != 0){
+              shops.forEach( shop => {
+                i++;
+                %>
+                  <li class="shop" id="shop_<%= i %>" onclick="shopSelected(<%= i %>)">
+                    <a href="/admin/<%= shop.id %>/orders/<%= shop.name %>">
+                          <div class="profile-pic">
+                              <img src="data:image/<%=shop.logoURL.contentType%>;base64,
+                              <%=shop.logoURL.data.toString('base64')%>" width="30rem" height="30rem" style="border-radius: 50%;" > 
+                          </div>
+                          <div class="profile-info">
+                            <p class="shopName" style="font-size: larger" id="shopname_<%= i %>"><%= shop.name %></p>
+                            <p class="shopCity"><%= shop.city %></p>
+                          </div>
+                    </a>
+                    <input type="hidden" value="<%= shop.id %>" class="shopid" id="shopid_<%= i %>" />
+                  </li>
+                <%
+              })
+            }else{
+              %>
+              <h1>No Shops Registered!</h1>
+              <%
+            }
+            %>
+          </ul>
+        </div>
+      
+      </div><!-- orders -->
+
+</body>
+</html>

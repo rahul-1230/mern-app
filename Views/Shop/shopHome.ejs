@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    <%= title %>
+  </title>
+ <!-- Load icon library -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ <!-- Boxicons CDN Link -->
+ <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+
+
+  <style>
+    /* Googlefont Poppins CDN Link */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+   <%- include('./sidebarNheader.css') %>
+
+    
+    .home-content .home-header {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 80px;
+      background-color: #e8efeb;
+      padding: 10px 0px;
+      z-index: 10;
+    }
+
+    .home-content .home-heading {
+      width: calc(100% - 160);
+      text-align: center;
+      text-shadow: #2697FF;
+      display: inline-block;
+    }
+
+    .home-content .home-header .top-heading {
+      display: flex;
+      justify-content: space-between;
+    }
+
+
+    <%- include('./shopHome/filters.css') %>
+    <%- include('./shopHome/frames.css') %>
+    <%- include('./button/button.css') %>
+
+    .home-content .home-header .search-box form input{
+      height: 2rem;
+      /* max-height: 3rem; */
+      min-height: 1.5rem;
+      width: 20rem;
+      padding: 0.3rem;
+      border: none;
+      border:  1px solid #dcd6f7;
+      font-size: medium;
+    }
+    .home-content .home-header .search-box form button{
+      height: 2rem;
+      /* max-height: 3rem; */
+      /* min-height: 1.5rem; */
+      padding: 0.3rem;
+      border: none;
+      border:  1px solid #dcd6f7;
+      font-size: small;
+    }
+    .home-content .home-header .search-box form input:hover{
+      border:  1px solid #424874;
+    }
+    .home-content .home-header .search-box form button:hover{
+      border:  1px solid #424874;
+      /* font-size: medium; */
+    }
+
+    
+  </style>
+
+<script type="text/javascript">
+  
+  var slideIndex = 1;
+showSlides(slideIndex);
+
+// Next/previous controls
+function plusSlides(no, n) {
+  showSlides(no, slideIndex += n);
+}
+
+// Thumbnail image controls
+function currentSlide(no, n) {
+  showSlides(no, slideIndex = n);
+}
+
+function showSlides(no,n) {
+  var i;
+  var slides = document.getElementsByClassName("frameSlides"+no);
+  var dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+}
+  </script>
+</head>
+
+<body>
+  
+  <div class="sidebar">
+    <div class="logo-details">
+      <i class='bx bxl-c-plus-plus'></i>
+      <span class="logo_name">LensePro</span>
+    </div>
+    <ul class="nav-links">
+      <li>
+        <a href="" class="active">
+          <i class='bx bx-grid-alt' ></i>
+          <span class="links_name" >Frames</span>
+        </a>
+      </li>
+      <li>
+        <a href="/shop/<%= shopid %>/addCustPage" >
+          <i class='bx bx-box' ></i>
+          <span class="links_name">Add Customer</span>
+        </a>
+      </li>
+      <li>
+        <a href="/shop/<%= shopid %>/viewCusts">
+          <i class='bx bx-list-ul' ></i>
+          <span class="links_name">All Customers</span>
+        </a>
+      </li>
+      <li>
+        <a href="/shop/<%= shopid %>/analytics">
+          <i class='bx bx-pie-chart-alt-2' ></i>
+          <span class="links_name">Reports</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/shop/<%= shopid %>/contactAdmin">
+          <i class='bx bx-book-alt' ></i>
+          <span class="links_name">Contact Admin</span>
+        </a>
+      </li>
+      <li class="log_out">
+        <a href="/shop/logout">
+          <i class='bx bx-log-out'></i>
+          <span class="links_name">Log out</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <section class="home-section">
+    <%- include('./navbar/navbar.ejs') %>
+  
+    <div class="home-content">
+      <div class="home-header">
+        <div class="top-heading">
+          <div class="home-heading">
+            <h1>Frames</h1>
+          </div><!-- end   home-heading -->
+          <div class="search-box">
+            <form action="/shop/<%= shopid %>/home/search" >
+                  <input class="search-input" id="search-input" name="search" placeholder="Search Here..." required>
+                  <button type="submit" class="search-btn" id="search-btn"><i class="fa fa-search"></i></button>
+            </form>
+          </div>
+          <!-- <div>
+            <form action="/shop/<%= shopid %>/recommend" >
+              <select placeholder="Select Shape" name="shape">
+                <option>Round</option>
+                <option>Square</option>
+                <option>Diamond</option>
+                <option>Heart</option>
+                <option>Triangle</option>
+                <option>Oblong</option>
+                <option>Oval</option>
+              </select>
+              <button type="submit" class="search-btn" id="search-btn"><i class="fa fa-search"></i></button>
+        </form>
+          </div> -->
+        </div><!-- end   top-heading-->
+        <div class="filters">
+          <form action="/shop/<%= shopid %>/home/filters">
+            <!-- <div class="reset">
+              <button id="reseting" class="reseting"><i class="fa fa-refresh"></i></button>
+            </div> -->
+          <div class="brand">
+            <select class="form-control inputstlDropDown" name="brand" id="brand" >
+              <option selected value="" class="option">Brand</option>
+              <% brands.forEach( brand =>{ %>
+                <option value="<%= brand.name %>" ><%= brand.name %></option>
+              <% }); %>
+            </select>
+          </div><!-- end   brand-->
+          <div class="color">
+            <select class="form-control inputstlDropDown" name="color" id="color">
+              <div class="dropdownMenu">
+                <option selected value="" class="option">Color</option>
+                <% colors.forEach( color =>{ %>
+                  <option value="<%= color.name %>" id="<%= color.value %>" ><%= color.name %></option>
+                <% }); %>
+              </div>
+            </select>
+          </div><!-- end   color-->
+          <div class="size">
+            <select class="form-control inputstlDropDown" name="size" id="size">
+              <option selected value="" class="option">Size</option>
+              <% size.forEach( size =>{ %>
+                <option value="<%= size.name %>" ><%= size.name %></option>
+              <% }); %>
+            </select>
+          </div><!-- end   size-->
+          <div class="material">
+            <select class="form-control inputstlDropDown" name="material" id="material">
+              <option selected value="">Material</option>
+              <% materials.forEach( material =>{ %>
+                <option value="<%= material.material %>" ><%= material.material %></option>
+              <% }); %>
+            </select>
+          </div><!-- end   material-->
+          <div class="price">
+            <select class="form-control inputstlDropDown" name="price" id="price">
+              <option value="" selected>Price Range</option>
+              <option value="200">Upto 200</option>
+              <option value="500">Upto 500</option>
+              <option value="1000">Upto 1000</option>
+              <option value="1000-2000">1000-2000</option>
+              <option value="2000-5000">2000-5000</option>
+              </select>
+          </div>
+          <div class="search">
+            <button type="submit"><i class="fa fa-search"></i></button>
+          </div>
+        </form>
+        </div><!-- end   filters-->
+      </div><!-- end   home-header-->
+      <div class="frames">
+        <% if(frameData.length!=0 ){ %>
+          <div class="frames-container">
+            <% 
+            var i=0; 
+            frameData.forEach(function(frames){
+              i++; 
+            %>
+              <div class="frame" >
+                <div class="frame-image" >
+                  <div class="images" >
+                        <div class="slideshow-container">
+                          <div class="mySlides first fade frameSlides<%= i %>">
+                            <div class="numbertext">1 / 3</div>
+                            <img src="data:image/<%=frames.FVphoto.contentType%>;base64,
+                            <%=frames.FVphoto.data.toString('base64')%>"  >                      
+                            <div class="text">Front View</div>
+                          </div>
+                        
+                          <div class="mySlides fade frameSlides<%= i %>">
+                            <div class="numbertext">2 / 3</div>
+                            <img src="data:image/<%=frames.SVphoto.contentType%>;base64,
+                            <%=frames.SVphoto.data.toString('base64')%>" >                      
+                            <div class="text">Side View</div>
+                          </div>
+                        
+                          <div class="mySlides fade frameSlides<%= i %>">
+                            <div class="numbertext">3 / 3</div>
+                            <img src="data:image/<%=frames.AVphoto.contentType%>;base64,
+                            <%=frames.AVphoto.data.toString('base64')%>" >
+                            <div class="text">120 degree View</div>
+                          </div>
+                        
+                          <!-- Next and previous buttons -->
+                          <a class="prev" onclick="plusSlides(<%= i %>, -1)">&#10094;</a>
+                          <a class="next" onclick="plusSlides(<%= i %>, 1)">&#10095;</a>
+                        </div>
+                        <br>
+                        
+                        <!-- The dots/circles -->
+                        <!-- <div style="text-align:center">
+                          <span class="dot" onclick="currentSlide(1)"></span>
+                          <span class="dot" onclick="currentSlide(2)"></span>
+                          <span class="dot" onclick="currentSlide(3)"></span>
+                        </div> -->
+                  
+                  </div>
+                  <div class="frame-info">
+                    <div class="info">
+                      <p style="font-size: 125%;"><b><%= frames.name %></b></p>
+                      <p><b>Brand :</b> <%= frames.brand %></p>
+                      <p><b>Price :</b> <%= frames.price %> Rs.</p>
+                    </div>
+                    <div class="action-btn">
+                      <form action="/shop/<%= shop.id %>/viewFrame/<%= frames.id %>" ><button >View</button></form>
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="operations">
+                  <a href="/admin/viewFrameDetails"><i class="fas fa-eye"></i></a>
+                  <a href="/admin/updateFrameDetails"><i class="fas fa-edit"></i></a>
+                  <a href="/admin/deleteFrame"><i class="fa fa-remove"></i></a>
+                </div> -->
+              </div>
+              <% }) %>
+              <%
+              var framePosition = 3 - (i%3);
+              if( framePosition < (4 - (i%4))){
+                framePosition = 4 - (i%4)
+              }
+                for(var j=0; j < framePosition; j++){
+                  %>
+                    <div class="frame" style="width: 332px"></div>
+                  <%
+                }
+              %>
+          </div>
+          <% } else{ %>
+            <h1 style="width: 100%; text-align: center; ">No Frame Found!</h1>
+            <% } %>
+      </div><!-- end   frames-->
+    </div><!-- end   home-content-->
+
+
+  </section>
+  <script>
+   
+
+    let sidebar = document.querySelector(".sidebar");
+    let sidebarBtn = document.querySelector(".sidebarBtn");
+    sidebarBtn.onclick = function () {
+      sidebar.classList.toggle("active");
+      if (sidebar.classList.contains("active")) {
+        sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+      } else
+        sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+    }
+  </script>
+
+</body>
+
+</html>

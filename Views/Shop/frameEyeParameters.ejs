@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    <%= title %>
+  </title>
+
+  
+  <!-- Boxicons CDN Link -->
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+  <style>
+    /* Googlefont Poppins CDN Link */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+    <%- include('./sidebarNheader.css') %>
+   
+    .addShopForm {
+      background-color: #dcd6f7;
+      width: 80%;
+      height: auto;
+      margin-left: 10%;
+      margin-top: 10px;
+      margin-bottom: 2rem;
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.582);
+      border-radius: 2rem;
+      padding-bottom: 1rem;
+      
+    }
+ 
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+    input[type=text],
+    input[type=tel],
+    input[type=email],
+    input[type=date],
+    input[type=number] {
+      width: 100%;
+      height: 3.5rem;
+      padding: 1rem;
+      outline: none;
+      border: 2px solid rgba(51, 51, 51, 0.356);
+    }
+
+    /* textarea {
+      width: 40rem;
+      height: 6rem;
+      padding: 1rem;
+      outline: none;
+
+      border: 2px solid rgba(51, 51, 51, 0.356);
+    } */
+    .btn-info {
+      align-items: center;
+      background-color: #424874;
+      border: 0;
+      border-radius: 2rem;
+      box-sizing: border-box;
+      color: #393E46;
+      cursor: pointer;
+      display: inline-flex;
+      font-family: -apple-system, system-ui, system-ui, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      justify-content: center;
+      line-height: 20px;
+      max-width: 480px;
+      min-height: 40px;
+      min-width: 0px;
+      overflow: hidden;
+      padding: 0px;
+      padding-left: 20px;
+      padding-right: 20px;
+      text-align: center;
+      touch-action: manipulation;
+      transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+      user-select: none;
+      -webkit-user-select: none;
+      vertical-align: middle;
+      color: white;
+    }
+ 
+
+    .btn-info:hover,
+    .btn-info:focus {
+      background-color: #8d95cf;
+      color: #ffffff;
+    }
+    .add-shop-button {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      margin: 2rem 0 1rem 0;
+      /* left: 5rem; */
+      /* top: -3rem; */
+    }
+    .heading{
+      width: 100%;
+      text-align: center;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      font-size: 30px;
+      font-weight: 600 ;
+    }
+    .heading p{
+      /* top: 3rem; */
+    }
+    .frameParameters{
+      margin: 0 10%;
+      padding-top: 2rem;
+      width: 80%;
+    }
+    .eyeParameters {
+      display: grid;
+      grid-template-columns: auto auto auto auto;
+      padding: 2rem;
+      gap: 1rem;
+      /* width: 90%; */
+      margin: 0 5%;
+    }
+    form{
+      /* position: relative; */
+      padding: 2rem 0 0 0;
+      /* margin-bottom: 3rem; */
+    }
+    .frame{
+      margin: 0 5%;
+      padding-top: 2rem;
+      width: 90%;
+      /* margin-top: 2rem; */
+    }
+    .eye{
+      padding: 5rem;
+      width: 90%;
+      margin: 0 5%;
+    }
+    .frame{
+      /* border: #424874 dashed 3px; */
+      border-radius: 3rem 3rem 0 0 ;
+      padding: 2rem;
+    }
+    .eye{
+      /* border: #424874 dashed 3px; */
+      border-top: none;
+      border-radius: 0 0 3rem 3rem;
+      padding: 2rem;
+    }
+    .input-field-fp:hover{
+      border: 1px solid #424874;
+      background: #d2d9dd;
+    }
+    .eye .form-group label{
+      width: 100%;
+      text-align: center;
+    }
+    .eye .form-group .eye-side{
+      width: 100%;
+      text-align: right;
+    }
+  </style>
+  <!-- <style href="../ShopCSS/signup.css" type="stylesheet"></style> -->
+</head>
+
+<body>
+
+  <div class="sidebar">
+    <div class="logo-details">
+      <i class='bx bxl-c-plus-plus'></i>
+      <span class="logo_name">LensePro</span>
+    </div>
+    <ul class="nav-links">
+      <li>
+        <a href="/shop/<%= shopid %>/home">
+          <i class='bx bx-grid-alt'></i>
+          <span class="links_name">Frames</span>
+        </a>
+      </li>
+      <li>
+        <a href="/shop/<%= shopid %>/addCustPage" class="active">
+          <i class='bx bx-box'></i>
+          <span class="links_name">Add Customer</span>
+        </a>
+      </li>
+      <li>
+        <a href="/shop/<%= shopid %>/viewCusts">
+          <i class='bx bx-list-ul'></i>
+          <span class="links_name">View All Customers</span>
+        </a>
+      </li>
+      <li>
+        <a href="/shop/<%= shopid %>/analytics">
+          <i class='bx bx-pie-chart-alt-2'></i>
+          <span class="links_name">Reports</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="/shop/<%= shopid %>/contactAdmin">
+          <i class='bx bx-book-alt'></i>
+          <span class="links_name">Contact Admin</span>
+        </a>
+      </li>
+      <li class="log_out">
+        <a href="/shop/logout">
+          <i class='bx bx-log-out'></i>
+          <span class="links_name">Log out</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <section class="home-section">
+    <!-- <div class="navbar"> -->
+    <nav>
+      <div class="sidebar-button">
+        <i class='bx bx-menu sidebarBtn'></i>
+        <span class="role">My Shop</span>
+      </div>
+
+      <div class="profile-details">
+        <!--<img src="images/profile.jpg" alt="">-->
+        <span class="admin_name">
+            <a href="/shop/profile/<%= shopid %>"><i class='bx bx-user'></i></a></span>
+      </div>
+    </nav>
+
+    <div class="home-content">
+     
+      <div class="main-content" style="height: auto;">
+        <div class="form-area">
+          <div class="addShopForm">
+            <form action="/shop/<%= shopid %>/parameters/<%= custid %>" method="post" class="add-shop-form">
+              <div class="frame">
+                      <div class="heading">
+                            <p>Frame Measurements</p>
+                      </div>
+                      <div class="frameParameters">
+                        <div class="form-group">
+                          <label for="pd">PD</label>
+                          <input type="number" min=0 class="input-field-fp" name="pd" id="pd" placeholder="Pupil Distance" required>
+                        </div>
+                        <div class="form-group">
+                          <label for="ph">PH</label>
+                          <input type="number" min=0 class="input-field-fp" name="ph" id="ph" placeholder="Pupil Height" required>
+                        </div>
+                        <div class="form-group">
+                          <label for="tw">A</label>
+                          <input type="number" min=0 class="input-field-fp" name="tw" id="tw" placeholder="Template Width" required>
+                        </div>
+                        <div class="form-group">
+                          <label for="et">B</label>
+                          <input type="number" min=0 class="input-field-fp" name="et" id="et" placeholder="Elevation Template" required>
+                        </div>
+                        <div class="form-group">
+                          <label for="bd">DBL</label>
+                          <input type="number" min=0 class="input-field-fp" name="bd" id="bd" placeholder="Bridge Distance" required>
+                        </div>
+                        <div class="form-group">
+                          <label for="vd">v</label>
+                          <input type="number" min=0 class="input-field-fp" name="vd" id="vd" placeholder="Vertax Distance" required>
+                        </div>
+                        <div class="form-group">
+                          <label for="pa">p</label>
+                          <input type="number" min=0 class="input-field-fp" name="pa" id="pa" placeholder="Pantoscopic Angle" required>
+                        </div>
+                        <div class="form-group">
+                          <label for="fwa">w</label>
+                          <input type="number" min=0 class="input-field-fp" name="fwa" id="fwa" placeholder="Frame Wrap Angle" required>
+                        </div>
+                      </div>
+              </div>
+              <div class="eye">
+                    <div class="heading">
+                      <p>Presciption</p>
+                    </div>
+                    <div class="eyeParameters">
+                      <div></div>
+                      <div class="form-group">
+                        <label for="sphere">SPHERE</label>
+                        <!-- <input type="number" min=0 class="input-field" name="sphere" id="sphere" required> -->
+                      </div>
+                    
+                            <div class="form-group">
+                              <label for="cylinder">CYLINDER</label>
+                              <!-- <input type="number" min=0 class="input-field" name="cylinder" id="cylinder" required> -->
+                            </div>
+                            <div class="form-group eye-side">
+                              <label for="axis">AXIS</label>
+                              <!-- <input type="number" min=0 class="input-field" name="axis" id="axis" required> -->
+                            </div>
+                            <div class="form-group">
+                              <label for="re">Right Eye</label>
+                              <!-- <input type="number" min=0 class="input-field" name="re" id="re"  required> -->
+                            </div>
+                            <div class="form-group">
+                              <!-- <label for="re">re</label> -->
+                              <input type="number" min=0 class="input-field-ep" name="res" id="res" required>
+                            </div>
+                            
+                            <div class="form-group">
+                              <!-- <label for="re">re</label> -->
+                              <input type="number" min=0 class="input-field-ep" name="rec" id="rec" required>
+                            </div>
+                            <div class="form-group">
+                              <!-- <label for="re">re</label> -->
+                              <input type="number" min=0 class="input-field-ep" name="rea" id="rea" required>
+                            </div>
+                            <div class="form-group eye-side">
+                              <label for="le">Left Eye</label>
+                              <!-- <input type="number" min=0 class="input-field" name="re" id="re"  required> -->
+                            </div>
+                            <div class="form-group">
+                              <!-- <label for="re">re</label> -->
+                              <input type="number" min=0 class="input-field-ep" name="les" id="les" required>
+                            </div>
+                            <div class="form-group">
+                              <!-- <label for="re">re</label> -->
+                              <input type="number" min=0 class="input-field-ep" name="lec" id="lec" required>
+                            </div>
+                            <div class="form-group">
+                              <!-- <label for="re">re</label> -->
+                              <input type="number" min=0 class="input-field-ep" name="lea" id="lea" required>
+                            </div>
+                    </div>
+                  </div>
+              <div class="add-shop-button">
+                <button type="submit" class="btn btn-info">Add</button>
+              </div>
+            </form>
+          </div> <!-- end of addShopForm -->
+        </div> <!-- end of form-area -->
+      </div> <!-- end of main-content -->
+    </div> <!-- end of home-content -->
+
+  </section>
+
+  <script>
+    let sidebar = document.querySelector(".sidebar");
+    let sidebarBtn = document.querySelector(".sidebarBtn");
+    sidebarBtn.onclick = function () {
+      sidebar.classList.toggle("active");
+      if (sidebar.classList.contains("active")) {
+        sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+      } else
+        sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+    }
+
+// function validateFrame(){
+//   if(document.getElementById('type').value == "null"){
+//     alert("Please Select Type");
+//     document.getElementById('type').focus();
+//   }
+// }
+  </script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>

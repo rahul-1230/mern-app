@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    <%= title %>
+  </title>
+
+  <!--<title> Responsiive Admin | CodingLab </title>-->
+  <!-- Boxicons CDN Link -->
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <style>
+    /* Googlefont Poppins CDN Link */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+    <%- include('./sidebarNheader.css') %>
+
+    .home-section .home-content {
+      position: relative;
+      padding-top: 90px;
+      /* background-color: rgb(0, 81, 255); */
+    }
+
+    /* Responsive Media Query */
+    @media (max-width: 1240px) {
+      .sidebar {
+        width: 60px;
+      }
+
+      .sidebar.active {
+        width: 220px;
+      }
+
+      .home-section {
+        width: calc(100% - 60px);
+        left: 60px;
+      }
+
+      .sidebar.active~.home-section {
+        /* width: calc(100% - 220px); */
+        overflow: hidden;
+        left: 220px;
+      }
+
+      .home-section nav {
+        width: calc(100% - 60px);
+        left: 60px;
+      }
+
+      .sidebar.active~.home-section nav {
+        width: calc(100% - 220px);
+        left: 220px;
+      }
+
+      .home-section {
+        width: calc(100% - 60px);
+        left: 60px;
+      }
+
+      .sidebar.active~.home-section {
+        width: calc(100% - 220px);
+        left: 220px;
+      }
+    }
+
+    @media (max-width: 700px) {
+
+      nav .sidebar-button .role,
+      nav .profile-details .admin_name,
+      nav .profile-details i {
+        display: none;
+      }
+
+      .home-section nav .profile-details {
+        height: 50px;
+        min-width: 40px;
+      }
+    }
+
+    @media (max-width: 550px) {
+
+      .sidebar.active~.home-section nav .profile-details {
+        display: none;
+      }
+    }
+
+    /*.home-content {
+      padding: 0 20px;
+      background-color: #8ac0f3;
+    }
+
+    .home-content .home-header {
+      white-space: nowrap;
+      position: sticky;
+      display: flex;
+    }
+
+    .home-content .home-header .backButton {
+      background-color: blue;
+      display: inline-block;
+    }
+
+    .home-content .home-heading {
+      text-align: center;
+      display: inline-block;
+      /* text-shadow: #0501ff; */
+    /* color: rgb(83, 0, 0);
+    }
+
+    .home-content .addShopButton {
+      background-color: rgb(0, 153, 255);
+      width: 100px;
+      margin: auto;
+      /* left: calc(50% - 50); */
+    /* }
+
+    /*  .addShopButton :hover {
+      cursor: pointer;
+      background-color: darkcyan;
+    }
+
+    .main-content {
+      background-image: url('../Images/bg-image-shop-signup.jpg');
+    }
+
+    .form-heading {
+      text-align: center;
+      /* text-shadow: 2px 2px #ff0000; */
+    /*  border-bottom: 1px solid;
+      /* border-radius: 40px 40px 0 0; */
+    /*  }
+
+    /* Input Fields */
+    .back-button{
+      position: fixed;
+    }
+
+    /*.input-field {
+      /* text-align: center; */
+    /*  border-radius: 2rem;
+      padding: 0 1rem;
+      min-height: 2rem;
+      height: 3rem;
+    }
+
+    .input-field:hover {
+      box-shadow: 0 1px 1px grey;
+    }
+
+  
+
+    /* Add Shop Form*/
+
+
+
+    /* .addShopForm {
+      width: 90%;
+      overflow: auto;
+      position: relative;
+      left: 5%;
+      right: 5%;
+      /*margin : 0; */
+    /* background-color: #000a44; */
+    /*    border-radius: 20px;
+      background-color: rgb(211, 223, 255);
+      box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
+      margin-bottom: 3rem;
+      padding-bottom: 1.5rem;
+    }
+
+    .addShopForm form .shopinfo {
+      display: grid;
+      grid-template-columns: auto auto;
+      grid-gap: 1rem;
+      padding: 1rem;
+    }
+
+    .accountInfo,
+    .shopInfo {
+      /* border: 1px solid; */
+    /* border-radius: 10px 10px 10px 10px;  */
+    /* width:100%;
+  position:relative;
+  left:5%;
+  right:5%; */
+    /*  background-color: rgb(211, 223, 255);
+      /* border: groove; */
+    /*  border-radius: 2rem;
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    }
+
+  
+    /* Form Input*/
+    /*.inputstl {
+      padding: 9px;
+      border: solid 1px #4B718B;
+      outline: 0;
+      background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #CDDBE4), to(#FFFFFF));
+      background: -moz-linear-gradient(top, #FFFFFF, #CDDBE4 1px, #FFFFFF 25px);
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px;
+      -moz-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px;
+      -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px;
+    }
+
+    .add-shop-button {
+      width: 100%;
+      display: flex;
+      align-items: center;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }*/
+      .addShopText{
+        text-align: center;
+      }
+
+    .home-heading {
+      color: #333;
+      padding-left: 5rem;
+      position: relative;
+      top: 2rem;
+      margin-left: 5rem;
+      font-weight: bold;
+      font-size: 3rem;
+    }
+
+    .form-heading {
+      color: #333;
+      padding-left: 5rem;
+      position: relative;
+      top: 3rem;
+    }
+
+    .addShopForm {
+      background-color: #dcd6f7;
+      width: 90%;
+      margin: 3% 5%;
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.582);
+      border-radius: 2rem;
+      padding-bottom: 1rem;
+    }
+
+    .pic{
+      position: relative;
+      margin: 1rem 5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center; 
+      padding-top: 1rem;
+    }
+    .pic img{
+      border-radius: 50%;
+    }
+    .grid-container {
+      display: grid;
+      grid-template-columns: auto auto;
+      padding: 0 5rem;
+      padding-top: 5rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      padding: 0 5%;
+    }
+
+    input[type=text],
+    input[type=tel],
+    input[type=email],
+    input[type=date],
+    input[type=password] {
+      width: 100%;
+      height: 3.5rem;
+      padding: 1rem;
+      outline: none;
+      border: 2px solid rgba(51, 51, 51, 0.356);
+    }
+
+    textarea {
+      width: 40rem;
+      height: 6rem;
+      padding: 1rem;
+      outline: none;
+
+      border: 2px solid rgba(51, 51, 51, 0.356);
+    }
+
+    .add-shop-button {
+    
+      display: flex;
+      justify-content: center;
+      /* margin-bottom: 2rem; */
+    }
+
+    <%- include('./button/button.css') %>
+
+    .btn {
+      background-color: #09223b;
+      color: white;
+    }
+
+    .btn:hover {
+      color: white;
+    }
+
+    .extra {
+      height: 30vh;
+    }
+    .password-group{
+      position: relative;
+      display: flex;
+      flex-direction: row;
+    }
+    .see-password{
+      height: 100%;
+    position: absolute;
+    right: 10px;
+    padding-bottom: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+  </style>
+  <!-- <style href="../ShopCSS/signup.css" type="stylesheet"></style> -->
+</head>
+
+<body>
+
+  <div class="sidebar">
+    <div class="logo-details">
+      <i class='bx bxl-c-plus-plus'></i>
+      <span class="logo_name">LensePro</span>
+    </div>
+    <ul class="nav-links">
+      <li>
+        <a href="/admin/adminHome">
+          <i class='bx bx-grid-alt'></i>
+          <span class="links_name">Frames</span>
+        </a>
+      </li>
+      <li>
+        <a href="/admin/shopList" class="active">
+          <i class='bx bx-box'></i>
+          <span class="links_name">Shops</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-list-ul'></i>
+          <span class="links_name">Order list</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-pie-chart-alt-2'></i>
+          <span class="links_name">Analytics</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-book-alt'></i>
+          <span class="links_name">Frame Model</span>
+        </a>
+      </li>
+      <li>
+        <a href="/admin/messages">
+          <i class='fa fa-envelope'></i>
+          <span class="links_name">Messages</span>
+        </a>
+      </li>
+      <li class="log_out">
+        <a href="/admin/logout">
+          <i class='bx bx-log-out'></i>
+          <span class="links_name">Log out</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <section class="home-section">
+    <!-- <div class="navbar"> -->
+      <%- include('./navbar/navbar.ejs') %>
+    <div class="home-content">
+      <div class="back-button">
+        <form action="/admin/shopList"><button type="submit" class="btn-info">Back</button></form>
+      </div> <!-- end of back-button -->
+      <div class="main-content">
+        <div class="form-area">
+          <div class="addShopText">
+            <h1 class="home-heading">Edit Shop
+              </h1>
+          </div><!-- end of addShopText -->
+
+          <div class="addShopForm">
+            <form action="/admin/addShop" enctype="multipart/form-data" method="post" class="add-shop-form">
+              <div class="shopinfo">
+                <div class="accountInfo">
+                  
+                  <div class="pic">
+                    <label for="logo"></label>
+                    <img src="data:image/<%=shop.logoURL.contentType%>;base64,
+                            <%=shop.logoURL.data.toString('base64')%>" width="100"  height="100">   
+                    <!-- <input type="file" class="input-field-photo" name="logo" id="logo" accept="image/*" required> -->
+                  </div>
+                  <div class="form-heading">
+                    <h3>Account Info</h3>
+                  </div>
+                  <div class="grid-container">
+                    <div class="form-group">
+                      <label for="name">Shop Name</label>
+                      <input type="text" value="<%= shop.name %>" class="input-field" name="name" id="name" placeholder="Shop Name" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="email">Email</label>
+                      <input type="email" value="<%= shop.email %>"class="input-field" name="email" id="email" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="password">Shop Password</label>
+                      <div class="password-group">
+                      <input type="password" value="<%= shop.password %>" class="input-field" name="password" id="password" placeholder="Password"
+                        required>
+                        <span class="see-password">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                              <path d="M0 0h24v24H0z" fill="none"/>
+                              <path fill="#dcd6f7" d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+                          </svg>
+                      </span> 
+                      </div>
+                    </div>
+                    <!-- <div class="form-group">
+                      <label for="password">Confirm Password</label>
+                      <input type="password" class="input-field" name="confirmPassword" id="confirmPassword"
+                        placeholder="Confirm Password" required>
+                    </div> -->
+                    <div class="form-group">
+                      <label for="address">Address</label>
+                      <input type="text" value="<%= shop.address%>" class="input-field" name="address" id="address" placeholder="Address" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="city">City</label>
+                      <input type="text" value="<%= shop.city %>" class="input-field" name="city" id="city" placeholder="City" required>
+                      <!-- Dropdown for city -->
+                    </div>
+                    <div class="form-group">
+                      <label for="phone">Phone</label>
+                      <input type="tel" value="<%= shop.phone %>" pattern="[0-9]{10}" class="input-field" name="phone" id="phone"
+                        placeholder="0123456789" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="website">Website</label>
+                      <input type="text" value="<%= shop.website%>" class="input-field" name="website" id="website" placeholder="Website" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="owner">Owner Name</label>
+                      <input type="text" value="<%= shop.ownerName %>" class="input-field" name="ownerName" id="ownerName" placeholder="Owner Name"
+                        required>
+                    </div>
+                    
+                  </div><!-- end of grid-container -->
+                </div> <!-- end of account info -->
+              </div> <!-- end of shop info -->
+              <div class="add-shop-button">
+                <button type="submit" class="btn-info addShopButton">Update</button>
+              </div>
+            </form>
+          </div> <!-- end of addShopForm -->
+        </div> <!-- end of form-area -->
+      </div> <!-- end of main-content -->
+    </div> <!-- end of home-content -->
+
+  </section>
+
+  <script>
+
+document.addEventListener('DOMContentLoaded',  (event) => {
+
+const seePassword =  () => {
+  const seePwdIcon = document.querySelector('.see-password'),
+        pwdInput = document.getElementById('password')
+  seePwdIcon.addEventListener('mousedown', () => {
+    pwdInput.type = 'text'
+  })
+
+  seePwdIcon.addEventListener('mouseup', () => {
+    pwdInput.type = 'password';
+  })
+
+  seePwdIcon.addEventListener('mouseover', () => {
+    pwdInput.type = 'password';
+  })
+}
+
+seePassword()
+
+})
+
+
+    let sidebar = document.querySelector(".sidebar");
+    let sidebarBtn = document.querySelector(".sidebarBtn");
+    sidebarBtn.onclick = function () {
+      sidebar.classList.toggle("active");
+      if (sidebar.classList.contains("active")) {
+        sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+      } else
+        sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+    }
+
+// function validateFrame(){
+//   if(document.getElementById('type').value == "null"){
+//     alert("Please Select Type");
+//     document.getElementById('type').focus();
+//   }
+// }
+  </script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>

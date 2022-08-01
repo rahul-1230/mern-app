@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+
+    <!--<title> Responsiive Admin | CodingLab </title>-->
+    <link rel="stylesheet" href="style.css">
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
+    <style>
+
+/* Googlefont Poppins CDN Link */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+<%- include('./sidebarNheader.css') %>
+
+
+#table-id_wrapper{
+  display: inline-block;
+  width: 100%;
+  position: relative;
+  overflow: auto;
+}
+
+.dataTables_length, .dataTables_filter{
+  position: relative;
+}
+.dataTables_length{
+  left: 0;
+}
+.dataTables_filter{
+  right: 0;
+}
+
+/* .dataTables_paginate{
+  position: fixed;
+  right: 0;
+  margin-right: 1rem;
+} */
+.dataTables_info, .dataTables_paginate{
+  margin-top: 20px;
+}
+/* #table-id_wrapper table */
+
+.home-content  table {
+  border-collapse: collapse;
+  position: static;
+  max-width: 100%;
+  background-color: #d2f6ff;
+  overflow: auto;
+  border-bottom: solid 1px rgb(0, 204, 255);
+  box-shadow: 0rem 0.3rem 0.1rem rgba(0, 0, 0, 0.5);
+}
+.home-content  th, td {
+  text-align: left;
+  padding: 8px 10px;
+  white-space: nowrap;
+}
+.home-content  th{
+  position: sticky;
+  top: 0;
+  text-align: center;
+}
+.home-content  tr{
+  border: none;
+}
+.home-content  td {
+
+  border-right: solid 1px #424874; 
+  border-left: solid 1px #424874;
+}
+
+.home-content  table .actions{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.home-content  table .actions button{
+  background-color: #4083ff;
+  width: 25px;
+  border-radius: 7px;
+  color: white;
+}
+
+
+.home-content  table .actions button:hover{
+  background-color: #003597;
+  cursor: pointer;
+  box-shadow: 0 1px 1px black;
+}
+
+.home-content  tr:nth-child(even){background-color: #dcd6f7}
+
+.home-content  th {
+  background-color: #424874;
+  color: white;
+}
+#table-id{
+  margin-top: 3rem;
+}
+.search_input-field{
+  width: 100%;
+  background-color: #d2f6ff;
+  margin-top: 1rem;
+  padding: 0.5rem;
+  border-radius: 1rem 1rem 0 0;
+  display: flex;
+}
+#table_search{
+  height: 3rem;
+  width: 15rem;
+  margin: auto;
+  border: 1px solid black;
+  border-radius: 1rem;
+  padding: 1rem;
+  font-size: larger;
+}
+#table_search:hover{
+  cursor: pointer;
+   box-shadow: 0.2rem 0.2rem 0.1rem rgba(9, 0, 133, 0.5);
+}
+#table_serach:focus{
+   cursor: pointer;
+   box-shadow: 0.2rem 0.2rem 0.1rem rgba(9, 0, 133, 0.5);
+}
+.order{
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+#orderbtn{
+  background-color: #4083ff;
+  border-radius: 50%;
+  font-size: large;
+  padding: 0.1rem;
+  color: white;
+}
+#orderbtn:hover{
+  cursor: pointer;
+  background-color: blue;
+}
+    </style>
+</head>
+<body>
+
+  <div class="sidebar">
+    <div class="logo-details">
+      <i class='bx bxl-c-plus-plus'></i>
+      <span class="logo_name">LensePro</span>
+    </div>
+    <ul class="nav-links">
+      <li>
+        <a href="/shop/<%= shopid %>/home" >
+          <i class='bx bx-grid-alt' ></i>
+          <span class="links_name" >Frames</span>
+        </a>
+      </li>
+      <li>
+        <a href="/shop/<%= shopid %>/addCustPage" >
+          <i class='bx bx-box' ></i>
+          <span class="links_name">Add Customer</span>
+        </a>
+      </li>
+      <li>
+        <a href="" class="active">
+          <i class='bx bx-list-ul' ></i>
+          <span class="links_name">All Customers</span>
+        </a>
+      </li>
+      <li>
+        <a href="/shop/<%= shopid %>/analytics">
+          <i class='bx bx-pie-chart-alt-2' ></i>
+          <span class="links_name">Reports</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/shop/<%= shopid %>/contactAdmin">
+          <i class='bx bx-book-alt' ></i>
+          <span class="links_name">Contact Admin</span>
+        </a>
+      </li>
+      <li class="log_out">
+        <a href="/shop/logout">
+          <i class='bx bx-log-out'></i>
+          <span class="links_name">Log out</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <section class="home-section">
+   
+      <nav>
+        <div class="sidebar-button">
+          <i class='bx bx-menu sidebarBtn'></i>
+          <span class="role"><%= shopname %> </span>
+        </div>
+
+        <div class="profile-details">
+          <!--<img src="images/profile.jpg" alt="">-->
+          <span class="admin_name">
+              <a href="/shop/profile/<%= shopid %>"><i class='bx bx-user'></i></a></span>
+        </div>
+      </nav>
+    
+    <div class="home-content">
+       <table class="tbl_viewcust sortable" id="table-id">
+        <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Gender</th>
+        <th>BirthDate</th>
+        <th>Phone</th>
+        <th>Address</th>
+        <th>Profession</th>
+        <th>Actions</th>
+        <th>Order</th>
+        </tr>
+       <%
+       if(custs.length!=0){
+           custs.forEach(cust=>{
+       %>
+
+            <tr>
+                <td><%= cust.name %></td>
+                <td><%= cust.email %></td>
+                <td><%= cust.gender %></td>
+                <td><%= cust.birthdate %></td>
+                <td><%= cust.phone %></td>
+                <td><%= cust.address %></td>
+                <td><%= cust.profession %></td>
+                <td class="actions"><form action="/shop/<%= shopid %>/editCustPage/<%= cust.id %>"><button><i class="far fa-edit"></i></button></form>
+                  <form action="/shop/<%= shopid %>/deleteCust/<%= cust.id %>"><button onclick="return confirm('Are you sure you want to delete this customer?')" ><i class="fa fa-trash"></i></button></form></td>
+                <td>
+                  <% if(cust.paramsId == null) { %>
+                    <form action="/shop/<%= shopid %>/addParams/<%= cust.id %>" style="width: 100%; display: flex; justify-content: center;">
+                      <button type="submit" id="orderbtn" class="fa fa-plus"></button>
+                    </form>
+                  <% }else{ %>
+                    <div class="order">
+                        <form action="/shop/<%= shopid %>/<%= cust.id %>/orderData" style="width: 100%; display: flex; justify-content: center;">
+                          <button type="submit" id="orderbtn" class="fa fa-eye"></button>
+                        </form>
+                        <!-- <form action="/shop/<%= shopid %>/addParams/<%= cust.id %>" style="width: 100%; display: flex; justify-content: center;">
+                          <button type="submit" id="orderbtn" class="fa fa-plus"></button>
+                        </form> -->
+                    </div>
+                  <% } %>
+                </td>
+            </tr>
+            <%
+            })}else{
+            %>
+            <h1>No data found!</h1>
+            <%
+            }
+            %>
+        </table>
+
+    </div> <!-- end   home-content -->
+
+ 
+  </section>
+  <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+  
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" />
+
+  <!-- jQuery library file -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js">
+    </script>
+ 
+     <!-- Datatable plugin JS library file -->
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js">
+    </script>
+<script>
+ 
+ /* Initialization of datatable */
+ $(document).ready(function() {
+     $('#table-id').DataTable({ });
+ });
+</script>
+  <script>
+   let sidebar = document.querySelector(".sidebar");
+let sidebarBtn = document.querySelector(".sidebarBtn");
+sidebarBtn.onclick = function() {
+  sidebar.classList.toggle("active");
+  if(sidebar.classList.contains("active")){
+  sidebarBtn.classList.replace("bx-menu" ,"bx-menu-alt-right");
+}else
+  sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+}
+ </script>
+
+</body>
+</html>

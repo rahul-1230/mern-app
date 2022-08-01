@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    <%= title %>
+  </title>
+ <!-- Load icon library -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ <!-- Boxicons CDN Link -->
+ <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+
+
+
+  <style>
+    /* Googlefont Poppins CDN Link */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+    <%- include('./sidebarNheader.css') %>
+  
+    .btn-info {
+    align-items: center;
+    background-color: #424874;
+    width: fit-content;
+    border: 0;
+    border-radius: 2rem;
+    box-sizing: border-box;
+    color: #393E46;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: -apple-system, system-ui, system-ui, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 20px;
+    max-width: 480px;
+    min-height: 40px;
+    overflow: hidden;
+    padding: 0px;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: center;
+    touch-action: manipulation;
+    transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+    user-select: none;
+    -webkit-user-select: none;
+    vertical-align: middle;
+    color: white;
+  }
+
+
+  .btn-info:hover,
+  .btn-info:focus {
+    background-color: #8d95cf;
+    color: #ffffff;
+  }
+ 
+
+    .home-section{
+        display: flex;
+        height: 100%;
+    }
+    .home-content{
+        width: 100%;
+        height: 100%;
+        max-width: 100%;
+        max-height: 100%;
+    }
+    .chat{
+        position: relative;
+        height: calc(100% - 20px);
+        min-width: fit-content;
+        max-width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0 0 1rem 0;
+        border-radius: 2rem;
+        background-color: #dcd6f7;
+    }
+    .chat .chatHistory{
+        align-self: flex-start;
+        height: calc(100% - 90px);
+        overflow-y: auto;
+        width: 100%;
+        list-style-type: none;
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+    .chat .selected-shop{
+      width: 100%;
+      height: 40px;
+      display: flex;
+      /* position: absolute; */
+      z-index: 10;
+    }
+    .chat .selected-shop #selected-shop-name{
+      margin: auto;
+      background-color: #8d95cf;
+    }
+    .chat .chatHistory li#from{
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      /* margin-left: 2rem; */
+      /* margin-right: 2rem; */
+      padding: 0 2rem;
+      color: white;
+      width: 100%;
+      display: flex;
+      flex-direction: row-reverse;
+    }
+    .chat .chatHistory li #fromText{
+      background-color: #424874;
+      /* width: fit-content; */
+      border-radius: 10px 0 20px 10px;
+      padding: 0 1rem;
+      /* align-self: flex-end; */
+      max-width: 50%;
+      overflow-wrap: break-word;
+    }
+    .chat .chatHistory li#to{
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      /* margin-left: 2rem; */
+      /* margin-right: 2rem; */
+      padding: 0 2rem;
+      color: white;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+    }
+    .chat .chatHistory li #toText{
+      background-color: #424874;
+      /* width: fit-content; */
+      border-radius: 0 10px 10px 20px;
+      padding: 0 1rem;
+      /* align-self: flex-end; */
+      max-width: 50%;
+      overflow-wrap: break-word;
+    }
+    .chat form{
+        height: 50px;
+        padding: 0 1rem;
+        align-self: flex-end;
+        width: 100%;
+        border-top: 1px solid black;
+        padding-top: 0.5rem;
+    }
+    .chat form input{
+        width: 90%;
+        border-radius: 2rem;
+        min-height: 40px;
+        padding: 5px 10px;
+        min-width: default;
+        color: "#424874";
+    }
+    .chat form button{
+        align-self: flex-end;
+    }
+   
+  
+</style>
+</head>
+
+<body>
+  
+  <div class="sidebar">
+    <div class="logo-details">
+      <i class='bx bxl-c-plus-plus'></i>
+      <span class="logo_name">LensePro</span>
+    </div>
+    <ul class="nav-links">
+      <li>
+        <a href="/shop/<%= shopid %>/home" >
+          <i class='bx bx-grid-alt' ></i>
+          <span class="links_name" >Frames</span>
+        </a>
+      </li>
+      <li>
+        <a href="/shop/<%= shopid %>/addCustPage" >
+          <i class='bx bx-box' ></i>
+          <span class="links_name">Add Customer</span>
+        </a>
+      </li>
+      <li>
+        <a href="/shop/<%= shopid %>/viewCusts">
+          <i class='bx bx-list-ul' ></i>
+          <span class="links_name">All Customers</span>
+        </a>
+      </li>
+      <li>
+        <a href="/shop/<%= shopid %>/analytics">
+          <i class='bx bx-pie-chart-alt-2' ></i>
+          <span class="links_name">Reports</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/shop/<%= shopid %>/contactAdmin" class="active">
+          <i class='bx bx-book-alt' ></i>
+          <span class="links_name">Contact Admin</span>
+        </a>
+      </li>
+      <li class="log_out">
+        <a href="/shop/logout">
+          <i class='bx bx-log-out'></i>
+          <span class="links_name">Log out</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <section class="home-section">
+  
+    <nav>
+        <div class="sidebar-button">
+            <i class='bx bx-menu sidebarBtn'></i>
+            <span class="role"> </span>
+        </div>
+
+        <div class="profile-details">
+            <!--<img src="images/profile.jpg" alt="">-->
+            <span class="admin_name">
+                <a href="/shop/profile/<%= shopid %>"><i class='bx bx-user'></i></a></span>
+          </div>
+    </nav>
+
+
+
+
+   <div class="home-content">
+
+       <div class="chat">
+        <div class="selected-shop">
+          <h1 id="selected-shop-name">Admin</h1>
+        </div>
+           <ul class="chatHistory" id="chatHistory"></ul>
+           <form id="form">
+               <input type="text" class="msg" id="msg" autocomplete="off" required>
+               <input type="hidden" name="shopid" id="shopid" value="<%= shopid %>">
+               <button type="submit" class="btn-info sendBtn" id="sendBtn">SEND</button>
+           </form>
+       </div>
+
+   </div>
+
+
+  </section>
+
+  <script>
+   
+
+    let sidebar = document.querySelector(".sidebar");
+    let sidebarBtn = document.querySelector(".sidebarBtn");
+    sidebarBtn.onclick = function () {
+      sidebar.classList.toggle("active");
+      if (sidebar.classList.contains("active")) {
+        sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+      } else
+        sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+    }
+  </script>
+  <script src="https://cdn.socket.io/4.4.1/socket.io.min.js" integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H" crossorigin="anonymous"></script>
+  <!-- <script src="/socket.io/socket.io.js"></script> -->
+<!-- <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script> -->
+<script>
+      const shop_id = document.getElementById('shopid');
+    var socket = io("http://localhost:3000/shop");
+    var form = document.getElementById('form');
+    var input = document.getElementById('msg');
+    var messages = document.getElementById('chatHistory');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      if (input.value) {
+
+        socket.emit('chat shop message', { content: input.value, shopid: shop_id.value} );
+        var item = document.createElement('li');
+        var itemText = document.createElement('p');
+        item.id = "from";
+        itemText.id = "fromText"; 
+        itemText.innerHTML = input.value;
+        // item.textContent = input.value;
+      messages.appendChild(item);
+      
+      item.appendChild(itemText);
+      
+      messages.scrollTo(0, document.body.scrollHeight);
+        input.value = '';
+      }
+    });
+  
+    socket.on('chat admin message', function(msg) {
+      
+      var item = document.createElement('li');
+      var itemText = document.createElement('p');
+      item.id = "to";
+      itemText.id = "toText";
+      // item.textContent = msg;
+      itemText.innerHTML = msg;
+      messages.appendChild(item);
+      item.appendChild(itemText);
+      messages.scrollTo(0, document.body.scrollHeight);
+    });
+  </script>
+</body>
+
+</html>

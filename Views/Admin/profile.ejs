@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    <%= title %>
+  </title>
+
+ <!-- Load icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Boxicons CDN Link -->
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+
+  <style>
+    /* Googlefont Poppins CDN Link */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+ 
+    <%- include('./sidebarNheader.css') %>
+
+
+   
+
+    /* CSS */
+    .btn-info {
+      align-items: center;
+      background-color: #424874;
+      border: 0;
+      border-radius: 2rem;
+      box-sizing: border-box;
+      color: #393E46;
+      cursor: pointer;
+      display: inline-flex;
+      font-family: -apple-system, system-ui, system-ui, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      justify-content: center;
+      line-height: 20px;
+      max-width: 480px;
+      min-height: 40px;
+      min-width: 0px;
+      overflow: hidden;
+      padding: 0px;
+      padding-left: 20px;
+      padding-right: 20px;
+      text-align: center;
+      touch-action: manipulation;
+      transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+      user-select: none;
+      -webkit-user-select: none;
+      vertical-align: middle;
+      color: white;
+    }
+ 
+
+    .btn-info:hover,
+    .btn-info:focus {
+      background-color: #8d95cf;
+      color: #ffffff;
+    }
+
+    .home-content{
+      width: 100%;
+      min-height: 100%;
+      display: flex;
+    }
+    
+    .profile{
+      width: 50%;
+      min-width: fit-content;
+      /* height: 96%; */
+      margin: auto;
+      margin-top: 3rem;
+      background: #dcd6f7;
+      padding: 2rem;
+      border-radius: 3rem;
+      overflow: hidden;
+    }
+    .info, .logo{
+      margin: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .logo{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+    }
+    .logo i{
+      font-size: larger;
+    }
+    
+    table{
+      width: 100%;
+    }
+    table tr{
+      width: 100%;
+    }
+    table td{
+      padding: 0.5rem;
+    }
+    table td:nth-child(odd){
+      text-align: right;
+      
+      font-weight: 600;
+    } 
+    table td:nth-child(even){
+      text-align: left;
+    } 
+    .changePassword{
+      width: 100%;
+      display: flex;
+      /* justify-content: center; */
+      flex-direction: column;
+    }
+    .profile .info input{
+      width: 100%;
+      height: 1rem;
+      min-height: 30px;
+      border-radius: 1rem;
+      padding: 0.5rem;
+    }
+    .profile .info input:focus{
+      box-shadow: 0.2rem 0.2rem 0.1rem #8d95cf;
+    }
+    .profile .info .password_div{
+     position: relative;
+     display: flex;
+    }
+    .profile .info .password_div span{
+      display: flex;
+      height: 100%;
+     align-items: center;
+     vertical-align: middle;
+    }
+    .see-password{
+      margin: auto;
+      position: absolute;
+      right: 10px;
+      /* padding-bottom: 5px; */
+      cursor: pointer;
+    }
+    .changePassword .changePasswordBtn, .updatePasswordBtn{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin: 0.5rem;
+    }
+
+    .btn-info{
+      width: 15rem;
+      min-width: 15rem;
+    }
+    <%- include('./adminHome/filters.css') %>
+    <%- include('./adminHome/frames.css') %>
+
+    
+  </style>
+
+
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <div class="logo-details">
+          <i class='bx bxl-c-plus-plus'></i>
+          <span class="logo_name">LensePro</span>
+        </div>
+        <ul class="nav-links">
+          <li>
+            <a href="/admin/adminHome">
+              <i class='bx bx-grid-alt'></i>
+              <span class="links_name">Frames</span>
+            </a>
+          </li>
+          <li>
+            <a href="/admin/shopList">
+              <i class='bx bx-box'></i>
+              <span class="links_name">Shops</span>
+            </a>
+          </li>
+          <li>
+            <a href="/admin/orderList">
+              <i class='bx bx-list-ul'></i>
+              <span class="links_name">Order list</span>
+            </a>
+          </li>
+          <li>
+            <a href="/admin/analytics">
+              <i class='bx bx-pie-chart-alt-2'></i>
+              <span class="links_name">Analytics</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class='bx bx-book-alt'></i>
+              <span class="links_name">Frame Model</span>
+            </a>
+          </li>
+          <li>
+            <a href="/admin/messages">
+              <i class='fa fa-envelope'></i>
+              <span class="links_name">Messages</span>
+            </a>
+          </li>
+          <li class="log_out">
+            <a href="/admin/logout">
+              <i class='bx bx-log-out'></i>
+              <span class="links_name">Log out</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+  <section class="home-section">
+    <nav>
+        <div class="sidebar-button">
+          <i class='bx bx-menu sidebarBtn'></i>
+          <span class="role">Admin</span>
+        </div>
+  
+        <div class="profile-details">
+          <!--<img src="images/profile.jpg" alt="">-->
+          <span class="admin_name">
+              <a href="#"><i class='bx bx-user'></i></a></span>
+        </div>
+      </nav>
+  
+  
+    <div class="home-content" style="height: 100%;">
+
+        <div class="profile">
+            <div class="logo">
+              <i class="fa fa-user-circle-o"></i>
+            </div>
+            <div class="info">
+              <div class="details">
+                  <table>
+                  
+                      <tr>
+                        <td><label for="name"><i class="fa fa-user"></i></label></td>
+                        <td><p class="name" id="name"><%= admin.name %></p></td>
+                      </tr>
+                  
+                  
+                      <tr>
+                        <td><label for="email"><i class="fa fa-envelope"></i></label></td>
+                        <td><p><%= admin.email %></p></td>
+                      </tr>
+                  
+                  
+                      <tr>
+                        <td><label for="password"><i class="fa fa-lock"></i></label></td>
+                        <td>
+                          <div class="password_div">
+                          <input type="password" class="password" id="password" value="<%= admin.password %>" disabled>
+                          <span class="see-password">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <path d="M0 0h24v24H0z" fill="none"/>
+                                <path fill="#424874" d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+                            </svg>
+                        </span>   
+                      </div>
+                        </td>
+                      </tr>
+                  
+                  </table>
+              </div>
+            </div><!-- info -->
+            <div class="changePassword">
+              <div class="changePasswordBtn">
+                <button class="cpbtn btn-info" id="cpbtn" onclick="cpClick()">Change Password</button>
+              </div>
+              <div class="updatePasswordBtn">
+                <form action="/admin/profile/updatePassword" method="post">
+                  <button type="submit" class="upbtn btn-info" id="upbtn" onclick="upClick()">Update</button>
+                </form>
+              </div>
+            </div>
+        </div><!-- profile -->
+
+    </div>
+
+  </section>
+
+  <script>
+
+
+    let sidebar = document.querySelector(".sidebar");
+    let sidebarBtn = document.querySelector(".sidebarBtn");
+    sidebarBtn.onclick = function () {
+      sidebar.classList.toggle("active");
+      if (sidebar.classList.contains("active")) {
+        sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+      } else
+        sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+    }
+
+
+    document.addEventListener('DOMContentLoaded',  (event) => {
+
+      const cpBtn = document.getElementById('cpbtn')
+      const upBtn = document.getElementById('upbtn')
+      const pwd = document.getElementById('password')
+      
+      upBtn.style.display = "none";
+
+      cpBtn.addEventListener('click', () => {
+        pwd.disabled = false;
+        cpBtn.style.display = "none";
+        // cpBtn.style.width = 0;
+        upBtn.style.display = "block";
+      })
+
+
+  /* See Password */
+
+  const seePassword =  () => {
+  const seePwdIcon = document.querySelector('.see-password'),
+        pwdInput = document.getElementById('password')
+  seePwdIcon.addEventListener('mousedown', () => {
+    pwdInput.type = 'text'
+  })
+
+  seePwdIcon.addEventListener('mouseup', () => {
+    pwdInput.type = 'password';
+  })
+
+  seePwdIcon.addEventListener('mouseover', () => {
+    pwdInput.type = 'password';
+  })
+}
+
+seePassword()
+
+
+    })
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <style>
+
+                .analytics .analyticsByNumbers{
+                    width: 100%;
+                    padding: 1rem 0;
+                    display: flex;
+                    justify-content: space-evenly;
+                }
+
+                .analytics .analyticsByNumbers >div{
+                    background: #dcd6f7;
+                    border-radius: 1rem;
+                    padding: 1rem;
+                }
+
+        </style>
+    </head>
+</html>
+<body>
+        <div class="analytics">
+
+            <div class="analyticsByNumbers">
+                    <div class="totalShops">
+                        <h2>Total Shops</h2>
+                        <%= totalShops %>
+                    </div>
+
+                    <div class="totalFrames">
+                        <h2>Total Frames</h2>
+                        <%= totalFrames %>
+                    </div>
+
+                    <div class="totalSells">
+                        <h2>Total Sells</h2>
+                        <%= totalSells %>
+                    </div>
+            </div>  
+            
+            <div class="analyticsByCharts">
+
+            </div>
+        </div>
+</body>
+</html>

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    My Profile
+  </title>
+
+ <!-- Load icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Boxicons CDN Link -->
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
+  <style>
+    /* Googlefont Poppins CDN Link */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+ 
+    <%- include('./sidebarNheader.css') %>
+
+
+   
+
+    /* CSS */
+    .btn-info {
+      align-items: center;
+      background-color: #424874;
+      border: 0;
+      border-radius: 2rem;
+      box-sizing: border-box;
+      color: #393E46;
+      cursor: pointer;
+      display: inline-flex;
+      font-family: -apple-system, system-ui, system-ui, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      justify-content: center;
+      line-height: 20px;
+      max-width: 480px;
+      min-height: 40px;
+      min-width: 0px;
+      overflow: hidden;
+      padding: 0px;
+      padding-left: 20px;
+      padding-right: 20px;
+      text-align: center;
+      touch-action: manipulation;
+      transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+      user-select: none;
+      -webkit-user-select: none;
+      vertical-align: middle;
+      color: white;
+    }
+ 
+
+    .btn-info:hover,
+    .btn-info:focus {
+      background-color: #8d95cf;
+      color: #ffffff;
+    }
+
+    .home-content{
+      width: 100%;
+      min-height: 100%;
+      display: flex;
+    }
+    
+    .profile{
+      width: 50%;
+      min-width: fit-content;
+      /* height: 96%; */
+      margin: auto;
+      margin-top: 3rem;
+      background: #dcd6f7;
+      padding: 2rem;
+      border-radius: 3rem;
+      overflow: hidden;
+    }
+    .info, .logo{
+      margin: 0.5rem 0;
+    }
+    .logo{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+    }
+    .info,.changePassword{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        /* justify-content: center; */
+        align-items: center;
+    }
+    table{
+      width: 50%;
+    }
+    table tr{
+      width: 100%;
+    }
+    table td{
+      padding: 0.5rem;
+    }
+    table td:nth-child(odd){
+        margin-left: 3rem;
+      text-align: center;
+      width: 10%;
+      font-weight: 600;
+    } 
+    table td:nth-child(even){
+      text-align: left;
+      width: 50%;
+    } 
+    .changePassword{
+      width: 100%;
+      display: flex;
+      /* justify-content: center; */
+      flex-direction: column;
+    }
+    .changePassword .changePasswordBtn, .updatePasswordBtn{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin: 0.5rem;
+    }
+    .updatePasswordBtn{
+      display: none;
+    }
+    .btn-info{
+      width: 15rem;
+      min-width: auto;
+    }
+    <%- include('./shopHome/filters.css') %>
+    <%- include('./shopHome/frames.css') %>
+
+    
+  </style>
+
+
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <div class="logo-details">
+          <i class='bx bxl-c-plus-plus'></i>
+          <span class="logo_name">LensePro</span>
+        </div>
+        <ul class="nav-links">
+          <li>
+            <a href="/shop/<%= shop.id %>/home" >
+              <i class='bx bx-grid-alt' ></i>
+              <span class="links_name" >Frames</span>
+            </a>
+          </li>
+          <li>
+            <a href="/shop/<%= shop.id %>/addCustPage" >
+              <i class='bx bx-box' ></i>
+              <span class="links_name">Add Customer</span>
+            </a>
+          </li>
+          <li>
+            <a href="/shop/<%= shop.id %>/viewCusts">
+              <i class='bx bx-list-ul' ></i>
+              <span class="links_name">All Customers</span>
+            </a>
+          </li>
+          <li>
+            <a href="/shop/<%= shopid %>/analytics">
+              <i class='bx bx-pie-chart-alt-2' ></i>
+              <span class="links_name">Reports</span>
+            </a>
+          </li>
+          
+          <li>
+            <a href="/shop/<%= shop.id %>/contactAdmin">
+              <i class='bx bx-book-alt' ></i>
+              <span class="links_name">Contact Admin</span>
+            </a>
+          </li>
+          <li class="log_out">
+            <a href="/shop/logout">
+              <i class='bx bx-log-out'></i>
+              <span class="links_name">Log out</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+  <section class="home-section">
+    
+  
+    <nav>
+        <div class="sidebar-button">
+            <i class='bx bx-menu sidebarBtn'></i>
+            <span class="role"><%= shop.name %> </span>
+        </div>
+
+        <div class="profile-details">
+            <!--<img src="images/profile.jpg" alt="">-->
+            <span class="admin_name">
+                <a href="#"><i class='bx bx-user'></i></a></span>
+          </div>
+    </nav>
+
+
+
+
+    <div class="home-content" style="height: 100%;">
+
+        <div class="profile">
+            <div class="logo">
+                <img src="data:image/<%=shop.logoURL.contentType%>;base64,
+                <%=shop.logoURL.data.toString('base64')%>" width="100rem" height="100rem" style="border-radius: 50%;" > 
+            </div>
+            <div class="info">
+              <div class="details">
+                    <table>
+                      
+                      <tr>
+                        <td><label for="ownerName"><i class="fa fa-user"></i></label></td>
+                        <td><p><%= shop.ownerName %></p></td>
+                      </tr>
+                  
+                    
+                        <tr>
+                            <td><label for="name"><i class="fa fa-store"></i></label></td>
+                            <td><p class="name" id="name"><%= shop.name %></p></td>
+                        </tr>
+                    
+                    
+                        <tr>
+                            <td><label for="email"><i class="fa fa-envelope"></i></label></td>
+                            <td><p><%= shop.email %></p></td>
+                        </tr>
+                    
+                    
+                        <tr>
+                            <td><label for="password"><i class="fa fa-lock"></i></label></td>
+                            <td><input type="password" class="password" id="password" value="<%= shop.name %>" disabled></td>
+                        </tr>
+
+                        <tr>
+                          <td><label for="address"><i class="fa fa-home"></i></label></td>
+                          <td><p><%= shop.address %></p></td>
+                        </tr>
+
+                        <tr>
+                          <td><label for="city"><i class="fas fa-city"></i></label></td>
+                          <td><p><%= shop.city %></p></td>
+                        </tr>
+
+                        <tr>
+                          <td><label for="phone"><i class="fa fa-phone"></i></label></td>
+                          <td><p><%= shop.phone %></p></td>
+                        </tr>
+
+                        <tr>
+                          <td><label for="website"><i class="fa fa-link"></i></label></td>
+                          <td><a href="<%= shop.website %>"><%= shop.website %></a></td>
+                        </tr>
+
+                    </table>
+                </div>
+              <div class="changePassword">
+                <div class="changePasswordBtn">
+                  <button class="cpbtn btn-info" id="cpbtn" onclick="cpClick()">Change Password</button>
+                </div>
+                <div class="updatePasswordBtn">
+                  <form action="/shop">
+                    <button type="submit" class="upbtn btn-info" id="upbtn" onclick="upClick()">Update</button>
+                  </form>
+                </div>
+              </div>
+            </div><!-- info -->
+           
+        </div><!-- profile -->
+
+    </div>
+
+  </section>
+
+  <script>
+
+
+  let cpBtn = document.querySelector(".cpbtn");
+  let pwd = document.querySelector(".password");
+  // let cp = document.getElementsByClassName("changePasswordBtn");
+  // let up = document.getElementsByClassName("updatePasswordBtn");
+  // up.visibility = hidden;
+
+  cpBtn.onclick = () => {
+    pwd.disabled = false;
+    // up.visibility = visible;
+    // cp.visibility = hidden;
+  }
+
+    let sidebar = document.querySelector(".sidebar");
+    let sidebarBtn = document.querySelector(".sidebarBtn");
+    sidebarBtn.onclick = function () {
+      sidebar.classList.toggle("active");
+      if (sidebar.classList.contains("active")) {
+        sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+      } else
+        sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+    }
+  </script>
+
+</body>
+
+</html>

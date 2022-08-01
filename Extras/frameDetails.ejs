@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+
+    <!--<title> Responsiive Admin | CodingLab </title>-->
+    <link rel="stylesheet" href="style.css">
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+
+    <style>
+
+/* Googlefont Poppins CDN Link */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+.sidebar{
+  position: fixed;
+  height: 100%;
+  width: 240px;
+  background: #0A2558;
+  transition: all 0.5s ease;
+}
+.sidebar.active{
+  width: 60px;
+}
+.sidebar .logo-details{
+  height: 80px;
+  display: flex;
+  align-items: center;
+}
+.sidebar .logo-details i{
+  font-size: 28px;
+  font-weight: 500;
+  color: #fff;
+  min-width: 60px;
+  text-align: center
+}
+.sidebar .logo-details .logo_name{
+  color: #fff;
+  font-size: 24px;
+  font-weight: 500;
+}
+.sidebar .nav-links{
+  margin-top: 10px;
+}
+.sidebar .nav-links li{
+  position: relative;
+  list-style: none;
+  height: 50px;
+}
+.sidebar .nav-links li a{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.4s ease;
+}
+.sidebar .nav-links li a.active{
+  background: #081D45;
+}
+.sidebar .nav-links li a:hover{
+  background: #081D45;
+}
+.sidebar .nav-links li i{
+  min-width: 60px;
+  text-align: center;
+  font-size: 18px;
+  color: #fff;
+}
+.sidebar .nav-links li a .links_name{
+  color: #fff;
+  font-size: 15px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+.sidebar .nav-links .log_out{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+.home-section{
+  position: relative;
+  background: #c6ffee;
+  min-height: 100vh;
+  width: calc(100% - 240px);
+  left: 240px;
+  transition: all 0.5s ease;
+}
+.sidebar.active ~ .home-section{
+  width: calc(100% - 60px);
+  left: 60px;
+}
+.home-section nav{
+  display: flex;
+  justify-content: space-between;
+  height: 80px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  width: calc(100% - 240px);
+  left: 240px;
+  z-index: 100;
+  padding: 0 20px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  transition: all 0.5s ease;
+}
+.sidebar.active ~ .home-section nav{
+  left: 60px;
+  width: calc(100% - 60px);
+}
+.home-section nav .sidebar-button{
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 500;
+}
+nav .sidebar-button i{
+  font-size: 35px;
+  margin-right: 10px;
+}
+.home-section nav .search-box{
+  position: relative;
+  height: 50px;
+  max-width: 550px;
+  width: 100%;
+  margin: 0 20px;
+}
+nav .search-box input{
+  height: 100%;
+  width: 100%;
+  outline: none;
+  background: #F5F6FA;
+  border: 2px solid #EFEEF1;
+  border-radius: 6px;
+  font-size: 18px;
+  padding: 0 15px;
+}
+nav .search-box .bx-search{
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  background: #2697FF;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 4px;
+  line-height: 40px;
+  text-align: center;
+  color: #fff;
+  font-size: 22px;
+  transition: all 0.4 ease;
+}
+.home-section nav .profile-details{
+  display: flex;
+  align-items: center;
+  background: #F5F6FA;
+  border: 2px solid #EFEEF1;
+  border-radius: 6px;
+  height: 50px;
+  width: 100px;
+  padding: 0 15px 0 2px;
+}
+.home-section nav .profile-details:hover{
+    background-color: #006eff; 
+}
+.home-section nav .profile-details:hover a{
+    color : white;
+}
+.home-section nav .profile-details a{
+    text-decoration: none;
+}
+nav .profile-details img{
+  height: 40px;
+  width: 40px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+nav .profile-details .admin_name{
+  font-size: 15px;
+  font-weight: 500;
+  color: #333;
+  margin: 0 10px;
+  white-space: nowrap;
+}
+nav .profile-details i{
+  font-size: 25px;
+  color: #333;
+}
+.home-section .home-content{
+  position: relative;
+  top: 90px; 
+}
+
+/* CSS */
+.btn-info {
+  align-items: center;
+  background-color: #0A66C2;
+  border: 0;
+  border-radius: 100px;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: -apple-system, system-ui, system-ui, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 20px;
+  max-width: 480px;
+  min-height: 40px;
+  min-width: 0px;
+  overflow: hidden;
+  padding: 0px;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: center;
+  touch-action: manipulation;
+  transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+}
+
+.btn-info:hover,
+.btn-info:focus { 
+  background-color: #16437E;
+  color: #ffffff;
+}
+
+.btn-info:active {
+  background: #09223b;
+  color: rgb(255, 255, 255, .7);
+}
+
+.btn-info:disabled { 
+  cursor: not-allowed;
+  background: rgba(0, 0, 0, .08);
+  color: rgba(0, 0, 0, .3);
+}
+/* Responsive Media Query */
+@media (max-width: 1240px) {
+  .sidebar{
+    width: 60px;
+  }
+  .sidebar.active{
+    width: 220px;
+  }
+  .home-section{
+    width: calc(100% - 60px);
+    left: 60px;
+  }
+  .sidebar.active ~ .home-section{
+    /* width: calc(100% - 220px); */
+    overflow: hidden;
+    left: 220px;
+  }
+  .home-section nav{
+    width: calc(100% - 60px);
+    left: 60px;
+  }
+  .sidebar.active ~ .home-section nav{
+    width: calc(100% - 220px);
+    left: 220px;
+  }
+}
+
+@media (max-width: 700px) {
+  nav .sidebar-button .role,
+  nav .profile-details .admin_name,
+  nav .profile-details i{
+    display: none;
+  }
+  .home-section nav .profile-details{
+    height: 50px;
+    min-width: 40px;
+  }
+}
+@media (max-width: 550px) {
+  .sidebar.active ~ .home-section nav .profile-details{
+    display: none;
+  }
+}
+
+.home-content{
+  padding: 0 20px;
+  top: 80px;
+}
+.home-header{
+    display:flex;
+    justify-content: space-between;
+}
+
+
+    </style>
+</head>
+<body>
+
+  <div class="sidebar">
+    <div class="logo-details">
+      <i class='bx bxl-c-plus-plus'></i>
+      <span class="logo_name">LensePro</span>
+    </div>
+    <ul class="nav-links">
+      <li>
+        <a href="/adminHome" class="active">
+          <i class='bx bx-grid-alt' ></i>
+          <span class="links_name" >Frames</span>
+        </a>
+      </li>
+      <li>
+        <a href="/adminShopList" >
+          <i class='bx bx-box' ></i>
+          <span class="links_name">Shops</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-list-ul' ></i>
+          <span class="links_name">Order list</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-pie-chart-alt-2' ></i>
+          <span class="links_name">Analytics</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="#">
+          <i class='bx bx-book-alt' ></i>
+          <span class="links_name">Frame Model</span>
+        </a>
+      </li>
+      <li class="log_out">
+        <a href="/adminlogout">
+          <i class='bx bx-log-out'></i>
+          <span class="links_name">Log out</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <section class="home-section">
+    <div class="navbar">
+      <nav>
+        <div class="sidebar-button">
+          <i class='bx bx-menu sidebarBtn'></i>
+          <span class="role">Admin</span>
+        </div>
+
+        <div class="profile-details">
+          <!--<img src="images/profile.jpg" alt="">-->
+          <span class="admin_name"><a href="/adminProfile">Profile</a></span>
+          <i class='bx bx-user' ></i>
+        </div>
+      </nav>
+    </div>
+    <div class="home-content">
+        <div class="home-header">
+            <div class="back-button">
+                <form action="/adminHome" method="post">
+                    <button type="submit" class="backButton">Back</button>
+                </form>
+            </div>
+            <div class="heading">
+                <h1>Frame Details</h1>
+            </div>
+            <div>
+                <p></p>
+            </div>
+        </div>
+        <div class="frame-image">
+            <img src="data:image/<%= frame.photo.contentType %>;base64,
+                  <%= frame.photo.data.toString('base64') %>" width=300 height=150 style="margin: 5px;">
+        </div><!-- end of frame-image -->
+        <div class="frame-details">
+            <table>
+                <tbody>
+                  <tr>
+                    <td><b>Frame Name</Frame></b></td>
+                    <td><%= frame.name %></td>
+                </tr>
+                    <tr>
+                        <td><b>Model Number</b></td>
+                        <td><%= frame.modelNumber %></td>
+                    </tr>
+                    <tr>
+                        <td><b>Brand</b></td>
+                        <td><%= frame.brand %></td>
+                    </tr>
+                    <tr>
+                        <td><b>Frame Type</b></td>
+                        <td><%= frame.frameType %></td>
+                    </tr>
+                    <tr>
+                        <td><b>Glass Type</b></td>
+                        <td><%= frame.glassType %></td>
+                    </tr>
+                    <tr>
+                        <td><b>Color</b></td>
+                        <td><%= frame.color %></td>
+                    </tr>
+                    <tr>
+                        <td><b>Price</b></td>
+                        <td><%= frame.price %></td>
+                    </tr>
+                    <tr>
+                        <td><b>Material</b></td>
+                        <td><%= frame.material %></td>                                       
+                    </tr>
+                    <tr>
+                        <td><b>Shape</b></td>
+                        <td><%= frame.shape %></td>   
+                    </tr>
+                    <tr>
+                        <td><b>Size</b></td>
+                        <td><%= frame.size %></td>
+                    </tr>
+                    <tr>
+                        <td><b>Frame Width (in mm)</b></td>
+                        <td><%= frame.width %></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div><!-- end of frame-details -->
+    </div><!-- end of home-content -->
+
+ 
+  </section>
+
+  <script>
+
+if(req.query.msg){
+  alert(req.query.msg);
+}    
+   let sidebar = document.querySelector(".sidebar");
+let sidebarBtn = document.querySelector(".sidebarBtn");
+sidebarBtn.onclick = function() {
+  sidebar.classList.toggle("active");
+  if(sidebar.classList.contains("active")){
+  sidebarBtn.classList.replace("bx-menu" ,"bx-menu-alt-right");
+}else
+  sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+}
+ </script>
+
+</body>
+</html>

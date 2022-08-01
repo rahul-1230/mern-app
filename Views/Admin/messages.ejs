@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    <%= title %>
+  </title>
+
+ <!-- Load icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Boxicons CDN Link -->
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+
+  <style>
+    /* Googlefont Poppins CDN Link */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+ 
+    <%- include('./sidebarNheader.css') %>
+    <%- include('./button/button.css') %>
+    .home-section{
+        display: flex;
+        height: 100%;
+    }
+    .home-content{
+        width: 100%;
+        height: 100%;
+    }
+    .chat{
+        position: relative;
+        height: calc(100% - 20px);
+        min-width: fit-content;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0 0 1rem 0;
+        border-radius: 2rem;
+        background-color: #dcd6f7;
+        display: none;
+        
+    }
+    .chat .selected-shop{
+      width: 100%;
+      height: 40px;
+      display: flex;
+      /* position: absolute; */
+      z-index: 10;
+    }
+    .chat .selected-shop #selected-shop-name{
+      margin: auto;
+      background-color: #8d95cf;
+    }
+    .chat .chatHistory{
+        align-self: flex-start;
+        height: calc(100% - 90px);
+        overflow-y: auto;
+        width: 100%;
+        list-style-type: none;
+    }
+    .chat .chatHistory li#from{
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      /* margin-left: 2rem; */
+      /* margin-right: 2rem; */
+      padding: 0 2rem;
+      color: white;
+      width: 100%;
+      display: flex;
+      flex-direction: row-reverse;
+    }
+    .chat .chatHistory li #fromText{
+      background-color: #424874;
+      /* width: fit-content; */
+      border-radius: 10px 0 20px 10px;
+      padding: 0 1rem;
+      /* align-self: flex-end; */
+      max-width: 50%;
+    }
+    .chat .chatHistory li#to{
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      /* margin-left: 2rem; */
+      /* margin-right: 2rem; */
+      padding: 0 2rem;
+      color: white;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+    }
+    .chat .chatHistory li #toText{
+      background-color: #424874;
+      /* width: fit-content; */
+      border-radius: 0 10px 10px 20px;
+      padding: 0 1rem;
+      /* align-self: flex-end; */
+      max-width: 50%;
+    }
+    .chat form{
+        height: 50px;
+        padding: 0 1rem;
+        align-self: flex-end;
+        width: 100%;
+        border-top: 1px solid black;
+        padding-top: 0.5rem;
+    }
+    .chat form input{
+        width: 90%;
+        border-radius: 2rem;
+        min-height: 40px;
+        padding: 5px 10px;
+        min-width: default;
+        color: "#424874";
+    }
+    .chat form button{
+        align-self: flex-end;
+    }
+    .shops{
+        position: relative;
+        height: calc(100% - 20px);
+        min-width: fit-content;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0 0 1rem 0;
+        border-radius: 2rem;
+        background-color: #dcd6f7;
+        overflow-y: auto;
+    }
+    .shops .header{
+      width: 100%;
+      text-align: center;
+      color: #424874;
+      font-family:'Times New Roman', Times, serif;
+    }
+    .shops .shoplist {
+      list-style-type: none;
+      width: 94%;
+      margin: 2rem 3%;
+      overflow-y: auto;
+    }
+    .shops .shoplist li{
+      /* margin: 1rem 0; */
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+      background: #8d95cf;
+      padding-left: 2%;
+      padding-right: 2%;
+      color: rgb(13, 0, 133);
+     
+    }
+    
+    .shops .shoplist li:hover{
+      background: #424874;
+      color: white;
+      cursor: pointer;
+    }
+    .shops .shoplist li .profile-pic{
+      display: flex;
+      align-items: center;
+    }
+    .shops .shoplist li .profile-info{
+      padding: 0.5rem 0;
+    }
+  </style>
+
+ 
+</head>
+
+<body>
+
+  <div class="sidebar">
+    <div class="logo-details">
+      <i class='bx bxl-c-plus-plus'></i>
+      <span class="logo_name">LensePro</span>
+    </div>
+    <ul class="nav-links">
+      <li>
+        <a href="/admin/adminHome">
+          <i class='bx bx-grid-alt'></i>
+          <span class="links_name">Frames</span>
+        </a>
+      </li>
+      <li>
+        <a href="/admin/shopList">
+          <i class='bx bx-box'></i>
+          <span class="links_name">Shops</span>
+        </a>
+      </li>
+      <li>
+        <a href="/admin/orderList">
+          <i class='bx bx-list-ul'></i>
+          <span class="links_name">Order list</span>
+        </a>
+      </li>
+      <li>
+        <a href="/admin/analytics">
+          <i class='bx bx-pie-chart-alt-2'></i>
+          <span class="links_name">Analytics</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="#">
+          <i class='bx bx-book-alt'></i>
+          <span class="links_name">Frame Model</span>
+        </a>
+      </li>
+      <li>
+        <a href="" class="active">
+          <i class='fa fa-envelope'></i>
+          <span class="links_name">Messages</span>
+        </a>
+      </li>
+      <li class="log_out">
+        <a href="/admin/logout">
+          <i class='bx bx-log-out'></i>
+          <span class="links_name">Log out</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <section class="home-section">
+    <%- include('./navbar/navbar.ejs') %>
+  
+    <div class="home-content">
+      <div class="shops" id="shops">
+        <div class="header">
+          <h1>Shops</h1>
+        </div>
+        <ul class="shoplist" id="shoplist">
+          <%
+          var i=0;
+          if(shops.length != 0){
+            shops.forEach( shop => {
+              i++;
+              %>
+                <li class="shop" id="shop_<%= i %>" onclick="shopSelected(<%= i %>)">
+                  <div class="profile-pic">
+                      <img src="data:image/<%=shop.logoURL.contentType%>;base64,
+                      <%=shop.logoURL.data.toString('base64')%>" width="30rem" height="30rem" style="border-radius: 50%;" > 
+                  </div>
+                  <div class="profile-info">
+                    <p class="shopName" style="font-size: larger" id="shopname_<%= i %>"><%= shop.name %></p>
+                    <p class="shopCity"><%= shop.city %></p>
+                  </div>
+                  <input type="hidden" value="<%= shop.id %>" class="shopid" id="shopid_<%= i %>" />
+                </li>
+              <%
+            })
+          }else{
+            %>
+            <h1>No Shops Registered!</h1>
+            <%
+          }
+          %>
+        </ul>
+
+      </div>
+     
+        <div class="chat" id="chat">
+            <div class="selected-shop">
+              <h1 id="selected-shop-name"></h1>
+            </div>
+            <ul class="chatHistory" id="chatHistory"></ul>
+            <form id="form">
+                <input type="text" class="msg" id="msg" autocomplete="off" required>
+                <button type="submit" class="btn-info sendBtn" id="sendBtn">SEND</button>
+                <input type="hidden" name="shopid" class="chat_shopid" />
+            </form>
+        </div>
+
+    </div><!-- end   home-content-->
+
+
+  </section>
+
+  <script>
+
+
+    let sidebar = document.querySelector(".sidebar");
+    let sidebarBtn = document.querySelector(".sidebarBtn");
+    sidebarBtn.onclick = function () {
+      sidebar.classList.toggle("active");
+      if (sidebar.classList.contains("active")) {
+        sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+      } else
+        sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+    }
+  </script>
+   <script src="https://cdn.socket.io/4.4.1/socket.io.min.js" integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H" crossorigin="anonymous"></script>
+   <!-- <script src="/socket.io/socket.io.js"></script> -->
+   <script>
+     var socket = io("http://localhost:3000/admin");
+     var form = document.getElementById('form');
+     var input = document.getElementById('msg');
+     var messages = document.getElementById('chatHistory');
+ 
+     form.addEventListener('submit', function(e) {
+       var shopid = document.getElementsByClassName('chat_shopid').value;
+       e.preventDefault();
+       if (input.value) {
+         socket.emit('chat admin message', { content: input.value, shopid: shopid});
+         var item = document.createElement('li');
+         var itemText = document.createElement('p');
+      //  item.textContent = input.value;
+      item.id = "from";
+      itemText.id = "fromText";
+      itemText.innerHTML = input.value;
+       messages.appendChild(item);
+       item.appendChild(itemText);
+       messages.scrollTo(0, document.body.scrollHeight);
+         input.value = '';
+       }
+     });
+   
+     socket.on('chat shop message', function(msg) {
+       var item = document.createElement('li');
+       var itemText = document.createElement('p');
+      //  item.textContent = input.value;
+      item.id = "to";
+      itemText.id = "toText";
+      itemText.innerHTML = msg;
+       messages.appendChild(item);
+       item.appendChild(itemText);
+       messages.scrollTo(0, document.body.scrollHeight);
+     });
+   </script>
+<script>
+  $(document).ready(function() {
+    $('shop').click(function(){
+        alert($(this).child("shopid").val());
+    })
+});
+</script> 
+</script>
+  <script>
+    
+    function shopSelected(no){
+      
+      const shopid = document.getElementById('shopid_'+no);
+      const shopname = document.getElementById('shopname_'+no);
+      const shops = document.getElementById('shops');
+      const chat = document.getElementById('chat');
+      const chat_shopid = document.getElementsByClassName('chat_shopid');
+      const selected_shop_name = document.getElementById('selected-shop-name');
+
+      shops.style.display = "none";
+      chat.style.display = "block";
+
+      selected_shop_name.innerHTML = shopname.innerHTML;
+      chat_shopid.value = shopid.value;
+    }
+
+  </script>
+</body>
+
+</html>

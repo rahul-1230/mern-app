@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    <%= title %>
+  </title>
+
+
+  <!-- Boxicons CDN Link -->
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <style>
+    /* Googlefont Poppins CDN Link */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+   <%- include('./sidebarNheader.css') %>
+    /* Add Frame Form*/
+
+    .addFrameForm {
+      align-content: center;
+      overflow: auto;
+      width: 50%;
+      position: relative;
+      left: 25%;
+    }
+
+    /* Back Button */
+  <%- include('./button/button.css') %>
+
+    /* Form Input*/
+    .inputstl {
+      padding: 9px;
+      border: solid 1px #4B718B;
+      outline: 0;
+      background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #CDDBE4), to(#FFFFFF));
+      background: -moz-linear-gradient(top, #FFFFFF, #CDDBE4 1px, #FFFFFF 25px);
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px;
+      -moz-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px;
+      -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px;
+    }
+
+    .addFrameForm {
+      text-align: left;
+    }
+    .back-button{
+      position: fixed;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="sidebar">
+    <div class="logo-details">
+      <i class='bx bxl-c-plus-plus'></i>
+      <span class="logo_name">LensePro</span>
+    </div>
+    <ul class="nav-links">
+      <li>
+        <a href="" class="active">
+          <i class='bx bx-grid-alt' ></i>
+          <span class="links_name" >Frames</span>
+        </a>
+      </li>
+      <li>
+        <a href="/shop/<%= shopid %>/addCustPage" >
+          <i class='bx bx-box' ></i>
+          <span class="links_name">Add Customer</span>
+        </a>
+      </li>
+      <li>
+        <a href="/shop/<%= shopid %>/viewCusts">
+          <i class='bx bx-list-ul' ></i>
+          <span class="links_name">All Customers</span>
+        </a>
+      </li>
+      <li>
+        <a href="/shop/<%= shopid %>/analytics">
+          <i class='bx bx-pie-chart-alt-2' ></i>
+          <span class="links_name">Reports</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/shop/<%= shopid %>/contactAdmin">
+          <i class='bx bx-book-alt' ></i>
+          <span class="links_name">Contact Admin</span>
+        </a>
+      </li>
+      <li class="log_out">
+        <a href="/shop/logout">
+          <i class='bx bx-log-out'></i>
+          <span class="links_name">Log out</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <section class="home-section">
+    <nav>
+      <div class="sidebar-button">
+          <i class='bx bx-menu sidebarBtn'></i>
+          <span class="role"> </span>
+      </div>
+
+      <div class="profile-details">
+          <!--<img src="images/profile.jpg" alt="">-->
+          <span class="admin_name">
+              <a href="/shop/profile/<%= shopid %>"><i class='bx bx-user'></i></a></span>
+        </div>
+  </nav>
+    <div class="home-content">
+      <div cla="home-content home-header">
+        <div class="back-button">
+          <form action="/shop/<%= shopid %>/home"><button type="submit" class="btn-info">Back</button></form>
+        </div>
+        <div class="addFrameText" style="text-align: center;">
+          <h1 class="home-heading" style="color: #393E46;">Frame <%= frame.name %></h1>
+        </div>
+      </div>
+      <div class="addFrameForm">
+        <div class="form-group framePhoto">
+            <label for="spectaclePhoto">Frame Photos</label><br>
+            <div class="images" style="display: flex; flex-wrap: wrap; justify-content: space-evenly;">
+              <img src="data:image/<%=frame.FVphoto.contentType%>;base64,
+              <%= frame.FVphoto.data.toString('base64') %>" width=150 height=150 style="margin: 5px;">
+              <img src="data:image/<%=frame.SVphoto.contentType%>;base64,
+              <%= frame.SVphoto.data.toString('base64') %>" width=150 height=150 style="margin: 5px;">
+              <img src="data:image/<%=frame.AVphoto.contentType%>;base64,
+              <%= frame.AVphoto.data.toString('base64') %>" width=150 height=150 style="margin: 5px;">
+          </div>
+          </div>
+          <div class="form-group">
+            <label for="modelNumber">Model Number</label>
+            <p> <%= frame.modelNumber%></p>  
+          </div>
+          <div class="form-group">
+            <label for="brand">Brand</label>
+            <p> <%= frame.brand %></p>         
+          </div>
+          <div class="form-group">
+            <label for="Inputselect">Frame Type</label>
+            <p> <%= frame.frameType %></p>
+          </div>
+        
+          <div class="form-group">
+            <label for="color">Color</label>
+            <p> <%= frame.color %></p>
+          </div>
+          <div class="form-group">
+            <label for="price">Price</label>
+            <p> <%= frame.price %> Rs.</p>
+          </div>
+          <div class="form-group">
+            <label for="material">Material</label>
+            <p> <%= frame.material %></p>
+          </div>
+          <div class="form-group">
+            <label for="shape">Shape</label>
+            <p> <%= frame.shape %></p>
+          </div>
+          <div class="form-group">
+            <label for="size">Size</label>
+            <p> <%= frame.size %></p>
+          </div>
+          <div class="form-group">
+            <label for="size">Frame Width (in mm)</label>
+            <p> <%= frame.width %></p>
+          </div>
+          <!-- <div class="form-group">
+            <label for="size">Frame Dimension</label>
+            <input type="text" class="form-control inputstl" name="dimension" id="dimension"
+              pattern="[0-9]{2}-[0-9]{2}-[0-9]{3}" placeholder="ex. 50-50-100">
+          </div> -->
+          <div class="form-group">
+            <label for="weight">Weight group</label>
+            <p> <%= frame.weightGroup %></p>
+          </div>
+      </div>
+    </div>
+
+
+  </section>
+  <script>
+
+    function prevalue(){
+      const frametype = document.forms.select["frameType"];
+
+      frametype.forEach(element => {
+        if(element == frame.frameType){
+          element.selected = "true";
+        }
+      });
+    }
+
+    prevalue()
+  </script>
+<script>
+
+const color = document.form.select['color'];
+
+color.option.style.backgroundColor = color.option.value;
+
+</script>
+
+  <script>
+    let sidebar = document.querySelector(".sidebar");
+    let sidebarBtn = document.querySelector(".sidebarBtn");
+    sidebarBtn.onclick = function () {
+      sidebar.classList.toggle("active");
+      if (sidebar.classList.contains("active")) {
+        sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+      } else
+        sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+    }
+
+    // function validateFrame(){
+    //   if(document.getElementById('type').value == "null"){
+    //     alert("Please Select Type");
+    //     document.getElementById('type').focus();
+    //   }
+    // }
+   
+  </script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>

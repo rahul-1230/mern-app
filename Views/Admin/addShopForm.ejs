@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    <%= title %>
+  </title>
+
+  
+  <!-- Boxicons CDN Link -->
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <style>
+    /* Googlefont Poppins CDN Link */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+    <%- include('./sidebarNheader.css') %>
+
+    .home-content{
+      position: relative;
+      padding-top: 90px;
+      padding: 0 20px;
+    }
+    #address {
+      height: 6rem;
+      min-height: 4rem;
+    }
+
+.input-field:hover{
+  box-shadow: 0 1px 1px rgb(0, 0, 0);
+}
+.addShopText{
+  text-align: center;
+  /* text-shadow: 2px 2px #5e0000 ; */
+}
+
+
+.backButton{
+  margin-left: 1rem;
+  position: fixed;
+}
+    .btn-info {
+      align-items: center;
+      background-color: #424874;
+      border: 0;
+      border-radius: 2rem;
+      box-sizing: border-box;
+      color: #393E46;
+      cursor: pointer;
+      display: inline-flex;
+      font-family: -apple-system, system-ui, system-ui, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      justify-content: center;
+      line-height: 20px;
+      max-width: 480px;
+      min-height: 40px;
+      min-width: 0px;
+      overflow: hidden;
+      padding: 0px;
+      padding-left: 20px;
+      padding-right: 20px;
+      text-align: center;
+      touch-action: manipulation;
+      transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+      user-select: none;
+      -webkit-user-select: none;
+      vertical-align: middle;
+      color: white;
+    }
+ 
+
+    .btn-info:hover,
+    .btn-info:focus {
+      background-color: #8d95cf;
+      color: #ffffff;
+    }
+   
+
+    .home-heading {
+      color: #424874;
+      padding-left: 5rem;
+      position: relative;
+      margin-left: 5rem;
+      font-weight: bold;
+      font-size: 3rem;
+    }
+
+    .form-heading {
+      color: #333;
+      padding-left: 5rem;
+      position: relative;
+      top: 3rem;
+    }
+
+    .addShopForm {
+      background-color: #dcd6f7;
+      width: 90%;
+      margin: 3% 5%;
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.582);
+      border-radius: 2rem;
+      padding-bottom: 1rem;
+    }
+
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: auto auto;
+      padding: 0 5rem;
+      padding-top: 5rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    input[type=text],
+    input[type=tel],
+    input[type=email],
+    input[type=date],
+    input[type=password] {
+      width: 40rem;
+      height: 3.5rem;
+      padding: 1rem;
+      outline: none;
+      border: 2px solid rgba(51, 51, 51, 0.356);
+    }
+
+    textarea {
+      width: 40rem;
+      height: 6rem;
+      padding: 1rem;
+      outline: none;
+
+      border: 2px solid rgba(51, 51, 51, 0.356);
+    }
+
+    .add-shop-button {
+    
+      display: flex;
+      justify-content: center;
+      /* margin-bottom: 2rem; */
+    }
+
+  </style>
+  <!-- <style href="../ShopCSS/signup.css" type="stylesheet"></style> -->
+</head>
+
+<body>
+
+  <div class="sidebar">
+    <div class="logo-details">
+      <i class='bx bxl-c-plus-plus'></i>
+      <span class="logo_name">LensePro</span>
+    </div>
+    <ul class="nav-links">
+      <li>
+        <a href="/admin/adminHome">
+          <i class='bx bx-grid-alt'></i>
+          <span class="links_name">Frames</span>
+        </a>
+      </li>
+      <li>
+        <a href="" class="active">
+          <i class='bx bx-box'></i>
+          <span class="links_name">Shops</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-list-ul'></i>
+          <span class="links_name">Order list</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-pie-chart-alt-2'></i>
+          <span class="links_name">Analytics</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="#">
+          <i class='bx bx-book-alt'></i>
+          <span class="links_name">Frame Model</span>
+        </a>
+      </li>
+      <li>
+        <a href="/admin/messages">
+          <i class='fa fa-envelope'></i>
+          <span class="links_name">Messages</span>
+        </a>
+      </li>
+      <li class="log_out">
+        <a href="/admin/logout">
+          <i class='bx bx-log-out'></i>
+          <span class="links_name">Log out</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <section class="home-section"> 
+      <%- include('./navbar/navbar.ejs') %>
+    <div class="home-content">
+      <div class="back-button">
+        <form action="/admin/shopList"><button type="submit" class="backButton btn-info">Back</button></form>
+      </div> <!-- end of back-button -->
+      <div class="main-content">
+        <div class="form-area">
+          <div class="addShopText">
+            <h1 class="home-heading">Add New Shop</h1>
+          </div><!-- end of addShopText -->
+
+          <div class="addShopForm">
+            <form action="/admin/addShop" enctype="multipart/form-data" method="post" class="add-shop-form">
+              <div class="shopinfo">
+                <div class="accountInfo">
+                  <div class="form-heading">
+                    <h3>Account Info</h3>
+                  </div>
+                  <div class="grid-container">
+                    <div class="form-group">
+                      <label for="name">Shop Name</label>
+                      <input type="text" class="input-field" name="name" id="name" placeholder="Shop Name" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="email">Email</label>
+                      <input type="email" class="input-field" name="email" id="email" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="password">Shop Password</label>
+                      <input type="password" class="input-field" name="password" id="password" placeholder="Password"
+                        required>
+                    </div>
+                    <div class="form-group">
+                      <label for="password">Confirm Password</label>
+                      <input type="password" class="input-field" name="confirmPassword" id="confirmPassword"
+                        placeholder="Confirm Password" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="address">Address</label>
+                      <input type="text" class="input-field" name="address" id="address" placeholder="Address" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="city">City</label>
+                      <input type="text" class="input-field" name="city" id="city" placeholder="City" required>
+                      <!-- Dropdown for city -->
+                    </div>
+                    <div class="form-group">
+                      <label for="phone">Phone</label>
+                      <input type="tel" pattern="[0-9]{10}" class="input-field" name="phone" id="phone"
+                        placeholder="0123456789" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="website">Website</label>
+                      <input type="text" class="input-field" name="website" id="website" placeholder="Website" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="owner">Owner Name</label>
+                      <input type="text" class="input-field" name="ownerName" id="ownerName" placeholder="Owner Name"
+                        required>
+                    </div>
+                    <div class="form-group">
+                      <label for="logo">Logo</label>
+                      <input type="file" class="input-field-photo" name="logo" id="logo" accept="image/*" required>
+                    </div>
+                  </div><!-- end of grid-container -->
+                </div> <!-- end of account info -->
+              </div> <!-- end of shop info -->
+              <div class="add-shop-button">
+                <button type="submit" class="btn-info addShopButton">Add Shop</button>
+              </div>
+            </form>
+          </div> <!-- end of addShopForm -->
+        </div> <!-- end of form-area -->
+        
+      </div> <!-- end of main-content -->
+    </div> <!-- end of home-content -->
+
+  </section>
+
+  <script>
+    let sidebar = document.querySelector(".sidebar");
+    let sidebarBtn = document.querySelector(".sidebarBtn");
+    sidebarBtn.onclick = function () {
+      sidebar.classList.toggle("active");
+      if (sidebar.classList.contains("active")) {
+        sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+      } else
+        sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+    }
+
+// function validateFrame(){
+//   if(document.getElementById('type').value == "null"){
+//     alert("Please Select Type");
+//     document.getElementById('type').focus();
+//   }
+// }
+  </script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>
